@@ -1,7 +1,7 @@
 #ifndef LISTMODEL_H
 #define LISTMODEL_H
-#include "../QtModels/QTableModel.h"
-#include "Models.hpp"
+#include "QTableModel.h"
+#include "../Models/Models.hpp"
 
 class QtModel : public QTableModel {
     Q_OBJECT

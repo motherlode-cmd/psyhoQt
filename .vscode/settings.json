@@ -43,6 +43,9 @@
         "sstream": "cpp",
         "tuple": "cpp",
         "variant": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "unordered_map": "cpp"
     }
 }

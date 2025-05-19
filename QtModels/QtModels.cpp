@@ -1,4 +1,4 @@
-#include "Models.hpp"
+#include "QtModels.hpp"
 #include <iostream>
 
 QtModel::QtModel(QObject *parent) {}
