@@ -1,5 +1,6 @@
 #include "listmodel.h"
 #include <iostream>
+
 ListModel::ListModel(QObject *parent) {
 }
 // Переопределение виртуальных методов базового класса

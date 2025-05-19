@@ -1,6 +1,6 @@
 #ifndef LISTMODEL_H
 #define LISTMODEL_H
-#include "QTableModel.h"
+#include "../QtModels/QTableModel.h"
 #include "Models.hpp"
 
 class QtModel : public QTableModel {

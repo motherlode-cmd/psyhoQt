@@ -1381,6 +1381,9 @@ moc_formsales.cpp: Forms/formsales.h \
 	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include '/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/moc_predefs.h' -I/opt/homebrew/share/qt/mkspecs/macx-clang -I'/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales' -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/opt/homebrew/lib Forms/formsales.h -o moc_formsales.cpp
 
 moc_listmodel.cpp: Models/listmodel.h \
+		QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		List/List.hpp \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
@@ -1391,6 +1394,9 @@ moc_listmodel.cpp: Models/listmodel.h \
 
 moc_mainwindow.cpp: mainwindow.h \
 		Models/listmodel.h \
+		QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		List/List.hpp \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
@@ -1512,6 +1518,9 @@ formsales.o: Forms/formsales.cpp Forms/formsales.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formsales.o Forms/formsales.cpp
 
 listmodel.o: Models/listmodel.cpp Models/listmodel.h \
+		QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		List/List.hpp \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
@@ -1523,6 +1532,9 @@ Models.o: Models/Models.cpp Models/Models.hpp
 
 main.o: main.cpp mainwindow.h \
 		Models/listmodel.h \
+		QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		List/List.hpp \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
@@ -1535,6 +1547,9 @@ main.o: main.cpp mainwindow.h \
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		Models/listmodel.h \
+		QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		List/List.hpp \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
@@ -1542,9 +1557,6 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_mainwindow.h \
-		QtModels/QTableModel.h \
-		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
-		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		Forms/formsales.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
