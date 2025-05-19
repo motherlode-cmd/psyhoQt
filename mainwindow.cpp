@@ -26,15 +26,15 @@ MainWindow::~MainWindow()
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
     if(index == 0) {
-        ui->table->setModel(passangerHashTableModel);
+         ui->table->setModel(salesListModel);
         ui->pushButton_search->setVisible(true);
     } else if(index == 1) {
-        ui->table->setModel(flightAVLTreeModel);
+         ui->table->setModel(salesListModel);
         ui->pushButton_search->setVisible(true);
     } else if(index == 2) {
         ui->table->setModel(salesListModel);
         ui->pushButton_search->setVisible(false);
-    }
+    } 
 }
 
 void MainWindow::addPassanger(QStringList & list) {
@@ -49,15 +49,7 @@ void MainWindow::addFlight(QStringList & list) {
 
 void MainWindow::on_pushButton_clicked()
 {
-    if(ui->comboBox->currentIndex() == 0) {
-        FormPassanger * form = new FormPassanger();
-        connect(form, &FormPassanger::dataEntered, this, &MainWindow::addPassanger);
-        form->show();
-    } else if(ui->comboBox->currentIndex() == 1) {
-        FormFlight * form = new FormFlight();
-        connect(form, &FormFlight::dataEntered, this, &MainWindow::addFlight);
-        form->show();
-    } else if(ui->comboBox->currentIndex() == 2) {
+    if(ui->comboBox->currentIndex() == 2) {
         FormSales * form = new FormSales();
         connect(form, &FormSales::dataEntered, this, &MainWindow::addSale);
         form->show();
@@ -98,24 +90,21 @@ void MainWindow::search_setup(bool setup)
 void MainWindow::on_pushButton_ok_clicked()
 {
     search_setup(false);
-    passangerHashTableModel->populate(passangerHashTableModel->getQList());
-    flightAVLTreeModel->populate(flightAVLTreeModel->getQList());
-    //salesListModel->populate(salesListModel->getQList());
 }
 
 void MainWindow::on_lineEdit_search_textEdited(const QString &arg1)
 {
-    if(ui->comboBox->currentIndex() == 0) {
-        if(ui->radioButton_2->isChecked())
-            passangerHashTableModel->search(arg1);
-        else if(ui->radioButton->isChecked())
-            passangerHashTableModel->alt_search(arg1);
-    } else if(ui->comboBox->currentIndex() == 1) {
-        if(ui->radioButton->isChecked())
-            flightAVLTreeModel->search(arg1);
-        if(ui->radioButton_2->isChecked())
-            flightAVLTreeModel->alt_search(arg1);
-    }
+    // if(ui->comboBox->currentIndex() == 0) {
+    //     if(ui->radioButton_2->isChecked())
+    //         passangerHashTableModel->search(arg1);
+    //     else if(ui->radioButton->isChecked())
+    //         passangerHashTableModel->alt_search(arg1);
+    // } else if(ui->comboBox->currentIndex() == 1) {
+    //     if(ui->radioButton->isChecked())
+    //         flightAVLTreeModel->search(arg1);
+    //     if(ui->radioButton_2->isChecked())
+    //         flightAVLTreeModel->alt_search(arg1);
+    // }
 }
 
 
@@ -124,11 +113,7 @@ void MainWindow::on_pushButton_delete_clicked()
     QModelIndexList indexes = ui->table->selectionModel()->selectedRows();
     if (!indexes.isEmpty()) {
         QModelIndex index = indexes.first();
-        if(ui->comboBox->currentIndex() == 0) {
-            passangerHashTableModel->removeItem(index);
-        } else if(ui->comboBox->currentIndex() == 1) {
-            flightAVLTreeModel->removeItem(index);
-        } else if(ui->comboBox->currentIndex() == 2) {
+        if(ui->comboBox->currentIndex() == 2) {
             salesListModel->removeItem(index);
         }
     }

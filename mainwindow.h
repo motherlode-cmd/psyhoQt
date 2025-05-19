@@ -40,8 +40,6 @@ private:
     Ui::MainWindow *ui;
 
     QTableModel *  salesListModel = new ListModel();
-    QTableModel *  flightAVLTreeModel = new AVLTreeModel();
-    QTableModel *  passangerHashTableModel= new HashTableModel();
 
 };
 #endif // MAINWINDOW_H
