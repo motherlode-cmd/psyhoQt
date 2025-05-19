@@ -20,8 +20,6 @@ FormSales::FormSales(QWidget *parent) :
     QRegularExpression numberOfTicket("\\d{9}");
     QValidator *validatorTicket = new QRegularExpressionValidator(numberOfTicket, this);
     ui->lineEdit_ticket->setValidator(validatorTicket);
-
-
 }
 
 FormSales::~FormSales()

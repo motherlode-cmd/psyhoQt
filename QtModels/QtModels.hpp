@@ -15,5 +15,6 @@ public:
     QStringList get_headers() const override;
 private:
     std::vector <TableElement> list;
+    std::vector <std::string> labels;
 };
 #endif // LISTMODEL_H
