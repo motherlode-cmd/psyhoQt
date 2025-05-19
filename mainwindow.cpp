@@ -1,10 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Models/QTableModel.h"
+#include "QtModels/QTableModel.h"
 #include <iostream>
-#include "FormPassanger/formpassanger.h"
-#include "FormSales/formsales.h"
-#include "FormFlight/formflight.h"
+#include "Forms/formsales.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

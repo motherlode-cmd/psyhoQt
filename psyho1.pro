@@ -16,7 +16,8 @@ SOURCES += \
     Forms/formtreatment.cpp \
     List/List.cpp \
     Sales/Sales.cpp \
-    Models/QTableModel.cpp \
+    QtModels/QTableModel.cpp \
+    QtModels/QtModels.cpp \
     Forms/formsales.cpp \
     Models/listmodel.cpp \
     Models/Models.cpp \
@@ -24,8 +25,6 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    Flight/Flight.hpp \
-    FormFlight/formflight.h \
     Forms/formcomplant.h \
     Forms/formpatient.h \
     Forms/formdoctor.h \
@@ -33,7 +32,8 @@ HEADERS += \
     Forms/formtreatment.h \
     List/List.hpp \
     Sales/Sales.hpp \
-    Models/QTableModel.h \
+    QtModels/QTableModel.h \
+    QtModels/QtModels.h \
     Forms/formsales.h \
     Models/listmodel.h \
     Models/Models.hpp \

@@ -59,7 +59,8 @@ SOURCES       = Forms/formcomplant.cpp \
 		Forms/formtreatment.cpp \
 		List/List.cpp \
 		Sales/Sales.cpp \
-		Models/QTableModel.cpp \
+		QtModels/QTableModel.cpp \
+		QtModels/QtModels.cpp \
 		Forms/formsales.cpp \
 		Models/listmodel.cpp \
 		Models/Models.cpp \
@@ -69,6 +70,7 @@ SOURCES       = Forms/formcomplant.cpp \
 		moc_formdoctor.cpp \
 		moc_formprescription.cpp \
 		moc_formtreatment.cpp \
+		moc_QTableModel.cpp \
 		moc_formsales.cpp \
 		moc_listmodel.cpp \
 		moc_mainwindow.cpp
@@ -80,6 +82,7 @@ OBJECTS       = formcomplant.o \
 		List.o \
 		Sales.o \
 		QTableModel.o \
+		QtModels.o \
 		formsales.o \
 		listmodel.o \
 		Models.o \
@@ -90,6 +93,7 @@ OBJECTS       = formcomplant.o \
 		moc_formdoctor.o \
 		moc_formprescription.o \
 		moc_formtreatment.o \
+		moc_QTableModel.o \
 		moc_formsales.o \
 		moc_listmodel.o \
 		moc_mainwindow.o
@@ -463,16 +467,15 @@ DIST          = /opt/homebrew/share/qt/mkspecs/features/spec_pre.prf \
 		/opt/homebrew/share/qt/mkspecs/features/exceptions.prf \
 		/opt/homebrew/share/qt/mkspecs/features/yacc.prf \
 		/opt/homebrew/share/qt/mkspecs/features/lex.prf \
-		psyho1.pro Flight/Flight.hpp \
-		FormFlight/formflight.h \
-		Forms/formcomplant.h \
+		psyho1.pro Forms/formcomplant.h \
 		Forms/formpatient.h \
 		Forms/formdoctor.h \
 		Forms/formprescription.h \
 		Forms/formtreatment.h \
 		List/List.hpp \
 		Sales/Sales.hpp \
-		Models/QTableModel.h \
+		QtModels/QTableModel.h \
+		QtModels/QtModels.h \
 		Forms/formsales.h \
 		Models/listmodel.h \
 		Models/Models.hpp \
@@ -483,7 +486,8 @@ DIST          = /opt/homebrew/share/qt/mkspecs/features/spec_pre.prf \
 		Forms/formtreatment.cpp \
 		List/List.cpp \
 		Sales/Sales.cpp \
-		Models/QTableModel.cpp \
+		QtModels/QTableModel.cpp \
+		QtModels/QtModels.cpp \
 		Forms/formsales.cpp \
 		Models/listmodel.cpp \
 		Models/Models.cpp \
@@ -1287,8 +1291,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/homebrew/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Flight/Flight.hpp FormFlight/formflight.h Forms/formcomplant.h Forms/formpatient.h Forms/formdoctor.h Forms/formprescription.h Forms/formtreatment.h List/List.hpp Sales/Sales.hpp Models/QTableModel.h Forms/formsales.h Models/listmodel.h Models/Models.hpp mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents Forms/formcomplant.cpp Forms/formpatient.cpp Forms/formdoctor.cpp Forms/formprescription.cpp Forms/formtreatment.cpp List/List.cpp Sales/Sales.cpp Models/QTableModel.cpp Forms/formsales.cpp Models/listmodel.cpp Models/Models.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents Forms/formcomplant.h Forms/formpatient.h Forms/formdoctor.h Forms/formprescription.h Forms/formtreatment.h List/List.hpp Sales/Sales.hpp QtModels/QTableModel.h QtModels/QtModels.h Forms/formsales.h Models/listmodel.h Models/Models.hpp mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents Forms/formcomplant.cpp Forms/formpatient.cpp Forms/formdoctor.cpp Forms/formprescription.cpp Forms/formtreatment.cpp List/List.cpp Sales/Sales.cpp QtModels/QTableModel.cpp QtModels/QtModels.cpp Forms/formsales.cpp Models/listmodel.cpp Models/Models.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents Forms/formcomplant.ui Forms/formpatient.ui Forms/formsales.ui Forms/formdoctor.ui Forms/formprescription.ui Forms/formtreatment.ui mainwindow.ui $(DISTDIR)/
 
 
@@ -1324,9 +1328,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/homebrew/share/qt/mkspecs/features/data/dummy.cpp
 	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -O2 -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -mmacosx-version-min=14.0 -Wall -Wextra -dM -E -o moc_predefs.h /opt/homebrew/share/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_formcomplant.cpp moc_formpatient.cpp moc_formdoctor.cpp moc_formprescription.cpp moc_formtreatment.cpp moc_formsales.cpp moc_listmodel.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_formcomplant.cpp moc_formpatient.cpp moc_formdoctor.cpp moc_formprescription.cpp moc_formtreatment.cpp moc_QTableModel.cpp moc_formsales.cpp moc_listmodel.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_formcomplant.cpp moc_formpatient.cpp moc_formdoctor.cpp moc_formprescription.cpp moc_formtreatment.cpp moc_formsales.cpp moc_listmodel.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_formcomplant.cpp moc_formpatient.cpp moc_formdoctor.cpp moc_formprescription.cpp moc_formtreatment.cpp moc_QTableModel.cpp moc_formsales.cpp moc_listmodel.cpp moc_mainwindow.cpp
 moc_formcomplant.cpp: Forms/formcomplant.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QDialog \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1361,6 +1365,13 @@ moc_formtreatment.cpp: Forms/formtreatment.h \
 		moc_predefs.h \
 		/opt/homebrew/share/qt/libexec/moc
 	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include '/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/moc_predefs.h' -I/opt/homebrew/share/qt/mkspecs/macx-clang -I'/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales' -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/opt/homebrew/lib Forms/formtreatment.h -o moc_formtreatment.cpp
+
+moc_QTableModel.cpp: QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		moc_predefs.h \
+		/opt/homebrew/share/qt/libexec/moc
+	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include '/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/moc_predefs.h' -I/opt/homebrew/share/qt/mkspecs/macx-clang -I'/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales' -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/opt/homebrew/lib QtModels/QTableModel.h -o moc_QTableModel.cpp
 
 moc_formsales.cpp: Forms/formsales.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
@@ -1477,8 +1488,18 @@ Sales.o: Sales/Sales.cpp Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Sales.o Sales/Sales.cpp
 
-QTableModel.o: Models/QTableModel.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QTableModel.o Models/QTableModel.cpp
+QTableModel.o: QtModels/QTableModel.cpp QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QModelIndex \
+		/opt/homebrew/lib/QtCore.framework/Headers/QDebug \
+		/opt/homebrew/lib/QtCore.framework/Headers/qdebug.h \
+		/opt/homebrew/lib/QtGui.framework/Headers/QPixmap \
+		/opt/homebrew/lib/QtGui.framework/Headers/qpixmap.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QTableModel.o QtModels/QTableModel.cpp
+
+QtModels.o: QtModels/QtModels.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QtModels.o QtModels/QtModels.cpp
 
 formsales.o: Forms/formsales.cpp Forms/formsales.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
@@ -1520,7 +1541,13 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		QtModels/QTableModel.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		Forms/formsales.h \
+		/opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
+		/opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 moc_formcomplant.o: moc_formcomplant.cpp 
@@ -1537,6 +1564,9 @@ moc_formprescription.o: moc_formprescription.cpp
 
 moc_formtreatment.o: moc_formtreatment.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formtreatment.o moc_formtreatment.cpp
+
+moc_QTableModel.o: moc_QTableModel.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_QTableModel.o moc_QTableModel.cpp
 
 moc_formsales.o: moc_formsales.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_formsales.o moc_formsales.cpp
