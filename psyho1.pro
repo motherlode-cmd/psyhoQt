@@ -33,7 +33,7 @@ HEADERS += \
     List/List.hpp \
     Sales/Sales.hpp \
     QtModels/QTableModel.h \
-    QtModels/QtModels.h \
+    QtModels/QtModels.hpp \
     Forms/formsales.h \
     Models/listmodel.h \
     Models/Models.hpp \
