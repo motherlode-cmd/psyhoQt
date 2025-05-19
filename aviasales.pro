@@ -9,45 +9,64 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Flight/Flight.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormFlight/formflight.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/HashTable/HashTable.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/List/List.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Passenger/Passenger.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Sales/Sales.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Tree/AVLTree.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/QTableModel.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/avltreemodel.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormPassanger/formpassanger.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormSales/formsales.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/hashtablemodel.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/listmodel.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/main.cpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/mainwindow.cpp
+    FormFlight/formflight.cpp \
+    FormSales/formcomplant.cpp \
+    FormSales/formpatient.cpp \
+    HashTable/HashTable.cpp \
+    Flight/Flight.cpp \
+    List/List.cpp \
+    Passenger/Passenger.cpp \
+    Sales/Sales.cpp \
+    Tree/AVLTree.cpp \
+    Models/QTableModel.cpp \
+    Models/avltreemodel.cpp \
+    FormPassanger/formpassanger.cpp \
+    FormSales/formsales.cpp \
+    Models/hashtablemodel.cpp \
+    Models/listmodel.cpp \
+    Models/Models.cpp \
+    formdoctor.cpp \
+    formprescription.cpp \
+    formtreatment.cpp \
+    main.cpp \
+    mainwindow.cpp
 
 HEADERS += \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Flight/Flight.hpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormFlight/formflight.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/HashTable/HashTable.hpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/List/List.hpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Passenger/Passenger.hpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Sales/Sales.hpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Tree/AVLTree.hpp \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/QTableModel.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/avltreemodel.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormPassanger/formpassanger.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormSales/formsales.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/hashtablemodel.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/Models/listmodel.h \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/mainwindow.h
+    Flight/Flight.hpp \
+    FormFlight/formflight.h \
+    FormSales/formcomplant.h \
+    FormSales/formpatient.h \
+    HashTable/HashTable.hpp \
+    List/List.hpp \
+    Passenger/Passenger.hpp \
+    Sales/Sales.hpp \
+    Tree/AVLTree.hpp \
+    Models/QTableModel.h \
+    Models/avltreemodel.h \
+    FormPassanger/formpassanger.h \
+    FormSales/formsales.h \
+    Models/hashtablemodel.h \
+    Models/listmodel.h \
+    Models/Models.hpp \
+    formdoctor.h \
+    formprescription.h \
+    formtreatment.h \
+    mainwindow.h
 
 FORMS += \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormFlight/formflight.ui \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormPassanger/formpassanger.ui \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/FormSales/formsales.ui \
-    /Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/mainwindow.ui
+    FormFlight/formflight.ui \
+    FormPassanger/formpassanger.ui \
+    FormSales/formcomplant.ui \
+    FormSales/formpatient.ui \
+    FormSales/formsales.ui \
+    FormSales/formdoctor.ui \
+    FormSales/formprescription.ui \
+    FormSales/formtreatment.ui \
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
