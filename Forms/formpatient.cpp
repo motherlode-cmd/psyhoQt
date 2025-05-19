@@ -1,14 +1,14 @@
 #include "formpatient.h"
 #include "ui_formpatient.h"
 
-formpatient::formpatient(QWidget *parent)
+FormPatient::FormPatient(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::formpatient)
+    , ui(new Ui::FormPatient)
 {
     ui->setupUi(this);
 }
 
-formpatient::~formpatient()
+FormPatient::~FormPatient()
 {
     delete ui;
 }

@@ -4,19 +4,19 @@
 #include <QDialog>
 
 namespace Ui {
-class formprescription;
+class FormPrescription;
 }
 
-class formprescription : public QDialog
+class FormPrescription : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit formprescription(QWidget *parent = nullptr);
-    ~formprescription();
+    explicit FormPrescription(QWidget *parent = nullptr);
+    ~FormPrescription();
 
 private:
-    Ui::formprescription *ui;
+    Ui::FormPrescription *ui;
 };
 
 #endif // FORMPRESCRIPTION_H

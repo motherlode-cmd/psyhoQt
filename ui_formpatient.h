@@ -17,38 +17,38 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_formpatient
+class Ui_FormPatient
 {
 public:
     QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *formpatient)
+    void setupUi(QDialog *FormPatient)
     {
-        if (formpatient->objectName().isEmpty())
-            formpatient->setObjectName("formpatient");
-        formpatient->resize(400, 300);
-        buttonBox = new QDialogButtonBox(formpatient);
+        if (FormPatient->objectName().isEmpty())
+            FormPatient->setObjectName("FormPatient");
+        FormPatient->resize(400, 300);
+        buttonBox = new QDialogButtonBox(FormPatient);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
         buttonBox->setOrientation(Qt::Orientation::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
 
-        retranslateUi(formpatient);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, formpatient, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, formpatient, qOverload<>(&QDialog::reject));
+        retranslateUi(FormPatient);
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, FormPatient, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, FormPatient, qOverload<>(&QDialog::reject));
 
-        QMetaObject::connectSlotsByName(formpatient);
+        QMetaObject::connectSlotsByName(FormPatient);
     } // setupUi
 
-    void retranslateUi(QDialog *formpatient)
+    void retranslateUi(QDialog *FormPatient)
     {
-        formpatient->setWindowTitle(QCoreApplication::translate("formpatient", "Dialog", nullptr));
+        FormPatient->setWindowTitle(QCoreApplication::translate("FormPatient", "Dialog", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class formpatient: public Ui_formpatient {};
+    class FormPatient: public Ui_FormPatient {};
 } // namespace Ui
 
 QT_END_NAMESPACE

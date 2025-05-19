@@ -1,14 +1,14 @@
 #include "formprescription.h"
 #include "ui_formprescription.h"
 
-formprescription::formprescription(QWidget *parent)
+FormPrescription::FormPrescription(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::formprescription)
+    , ui(new Ui::FormPrescription)
 {
     ui->setupUi(this);
 }
 
-formprescription::~formprescription()
+FormPrescription::~FormPrescription()
 {
     delete ui;
 }

@@ -4,19 +4,19 @@
 #include <QDialog>
 
 namespace Ui {
-class formpatient;
+class FormPatient;
 }
 
-class formpatient : public QDialog
+class FormPatient : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit formpatient(QWidget *parent = nullptr);
-    ~formpatient();
+    explicit FormPatient(QWidget *parent = nullptr);
+    ~FormPatient();
 
 private:
-    Ui::formpatient *ui;
+    Ui::FormPatient *ui;
 };
 
 #endif // FORMPATIENT_H

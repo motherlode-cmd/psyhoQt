@@ -17,38 +17,38 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_formcomplant
+class Ui_FormComplant
 {
 public:
     QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *formcomplant)
+    void setupUi(QDialog *FormComplant)
     {
-        if (formcomplant->objectName().isEmpty())
-            formcomplant->setObjectName("formcomplant");
-        formcomplant->resize(400, 300);
-        buttonBox = new QDialogButtonBox(formcomplant);
+        if (FormComplant->objectName().isEmpty())
+            FormComplant->setObjectName("FormComplant");
+        FormComplant->resize(400, 300);
+        buttonBox = new QDialogButtonBox(FormComplant);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
         buttonBox->setOrientation(Qt::Orientation::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
 
-        retranslateUi(formcomplant);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, formcomplant, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, formcomplant, qOverload<>(&QDialog::reject));
+        retranslateUi(FormComplant);
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, FormComplant, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, FormComplant, qOverload<>(&QDialog::reject));
 
-        QMetaObject::connectSlotsByName(formcomplant);
+        QMetaObject::connectSlotsByName(FormComplant);
     } // setupUi
 
-    void retranslateUi(QDialog *formcomplant)
+    void retranslateUi(QDialog *FormComplant)
     {
-        formcomplant->setWindowTitle(QCoreApplication::translate("formcomplant", "Dialog", nullptr));
+        FormComplant->setWindowTitle(QCoreApplication::translate("FormComplant", "Dialog", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class formcomplant: public Ui_formcomplant {};
+    class FormComplant: public Ui_FormComplant {};
 } // namespace Ui
 
 QT_END_NAMESPACE

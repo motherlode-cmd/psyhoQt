@@ -4,19 +4,25 @@
 #include <QDialog>
 
 namespace Ui {
-class formtreatment;
+class FormTreatment;
 }
 
-class formtreatment : public QDialog
+class FormTreatment : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit formtreatment(QWidget *parent = nullptr);
-    ~formtreatment();
+    explicit FormTreatment(QWidget *parent = nullptr);
+    ~FormTreatment();
+    headerData(int section, Qt::Orientation orientation, int role) const;
+    index(int row, int column, const QModelIndex &parent) const;
+    parent(const QModelIndex &index) const;
+    rowCount(const QModelIndex &parent) const;
+    columnCount(const QModelIndex &parent) const;
+    data(const QModelIndex &index, int role) const;
 
 private:
-    Ui::formtreatment *ui;
+    Ui::FormTreatment *ui;
 };
 
 #endif // FORMTREATMENT_H

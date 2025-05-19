@@ -17,38 +17,38 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_formtreatment
+class Ui_FormTreatment
 {
 public:
     QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *formtreatment)
+    void setupUi(QDialog *FormTreatment)
     {
-        if (formtreatment->objectName().isEmpty())
-            formtreatment->setObjectName("formtreatment");
-        formtreatment->resize(400, 300);
-        buttonBox = new QDialogButtonBox(formtreatment);
+        if (FormTreatment->objectName().isEmpty())
+            FormTreatment->setObjectName("FormTreatment");
+        FormTreatment->resize(400, 300);
+        buttonBox = new QDialogButtonBox(FormTreatment);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
         buttonBox->setOrientation(Qt::Orientation::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
 
-        retranslateUi(formtreatment);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, formtreatment, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, formtreatment, qOverload<>(&QDialog::reject));
+        retranslateUi(FormTreatment);
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, FormTreatment, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, FormTreatment, qOverload<>(&QDialog::reject));
 
-        QMetaObject::connectSlotsByName(formtreatment);
+        QMetaObject::connectSlotsByName(FormTreatment);
     } // setupUi
 
-    void retranslateUi(QDialog *formtreatment)
+    void retranslateUi(QDialog *FormTreatment)
     {
-        formtreatment->setWindowTitle(QCoreApplication::translate("formtreatment", "Dialog", nullptr));
+        FormTreatment->setWindowTitle(QCoreApplication::translate("FormTreatment", "Dialog", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class formtreatment: public Ui_formtreatment {};
+    class FormTreatment: public Ui_FormTreatment {};
 } // namespace Ui
 
 QT_END_NAMESPACE

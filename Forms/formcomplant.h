@@ -4,19 +4,19 @@
 #include <QDialog>
 
 namespace Ui {
-class formcomplant;
+class FormComplant;
 }
 
-class formcomplant : public QDialog
+class FormComplant : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit formcomplant(QWidget *parent = nullptr);
-    ~formcomplant();
+    explicit FormComplant(QWidget *parent = nullptr);
+    ~FormComplant();
 
 private:
-    Ui::formcomplant *ui;
+    Ui::FormComplant *ui;
 };
 
 #endif // FORMCOMPLANT_H

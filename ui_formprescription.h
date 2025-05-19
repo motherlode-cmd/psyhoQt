@@ -17,38 +17,38 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_formprescription
+class Ui_FormPrescription
 {
 public:
     QDialogButtonBox *buttonBox;
 
-    void setupUi(QDialog *formprescription)
+    void setupUi(QDialog *FormPrescription)
     {
-        if (formprescription->objectName().isEmpty())
-            formprescription->setObjectName("formprescription");
-        formprescription->resize(400, 300);
-        buttonBox = new QDialogButtonBox(formprescription);
+        if (FormPrescription->objectName().isEmpty())
+            FormPrescription->setObjectName("FormPrescription");
+        FormPrescription->resize(400, 300);
+        buttonBox = new QDialogButtonBox(FormPrescription);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
         buttonBox->setOrientation(Qt::Orientation::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
 
-        retranslateUi(formprescription);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, formprescription, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, formprescription, qOverload<>(&QDialog::reject));
+        retranslateUi(FormPrescription);
+        QObject::connect(buttonBox, &QDialogButtonBox::accepted, FormPrescription, qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox, &QDialogButtonBox::rejected, FormPrescription, qOverload<>(&QDialog::reject));
 
-        QMetaObject::connectSlotsByName(formprescription);
+        QMetaObject::connectSlotsByName(FormPrescription);
     } // setupUi
 
-    void retranslateUi(QDialog *formprescription)
+    void retranslateUi(QDialog *FormPrescription)
     {
-        formprescription->setWindowTitle(QCoreApplication::translate("formprescription", "Dialog", nullptr));
+        FormPrescription->setWindowTitle(QCoreApplication::translate("FormPrescription", "Dialog", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class formprescription: public Ui_formprescription {};
+    class FormPrescription: public Ui_FormPrescription {};
 } // namespace Ui
 
 QT_END_NAMESPACE
