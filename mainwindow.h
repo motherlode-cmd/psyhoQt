@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "Models/listmodel.h"
+#include "Models/Models.hpp"
 #include "QtModels/QTableModel.h"
 #include <QMainWindow>
 
@@ -38,6 +39,11 @@ private:
     Ui::MainWindow *ui;
 
     QTableModel *  salesListModel = new ListModel();
+    QTableModel *  DoctorListModel = new QtModel();
+    QTableModel *  PatientListModel = new QtModel();
+    QTableModel *  PrescriotionListModel = new QtModel();
+    QTableModel *  TreatmentListModel = new QtModel();
+    QTableModel *  ComplantListModel = new QtModel();
 
 };
 #endif // MAINWINDOW_H
