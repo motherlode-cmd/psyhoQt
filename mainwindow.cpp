@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("Авиарейсы");
     ui->comboBox->addItem("Билеты");
     search_setup(false);
-    this->ui->table->setModel(passangerHashTableModel);
+    this->ui->table->setModel(salesListModel);
     ui->table->resizeColumnsToContents();
 }
 
@@ -35,14 +35,8 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
     } 
 }
 
-void MainWindow::addPassanger(QStringList & list) {
-    passangerHashTableModel->addItem(list);
-}
 void MainWindow::addSale(QStringList & list) {
     salesListModel->addItem(list);
-}
-void MainWindow::addFlight(QStringList & list) {
-    flightAVLTreeModel->addItem(list);
 }
 
 void MainWindow::on_pushButton_clicked()

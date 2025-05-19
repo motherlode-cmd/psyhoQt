@@ -1,9 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "Models/hashtablemodel.h"
 #include "Models/listmodel.h"
-#include "Models/avltreemodel.h"
-#include "Models/QTableModel.h"
+#include "QtModels/QTableModel.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
