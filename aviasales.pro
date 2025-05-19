@@ -9,59 +9,43 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    FormFlight/formflight.cpp \
-    FormSales/formcomplant.cpp \
-    FormSales/formpatient.cpp \
-    HashTable/HashTable.cpp \
-    Flight/Flight.cpp \
+    Forms/formcomplant.cpp \
+    Forms/formpatient.cpp \
+    Forms/formdoctor.cpp \
+    Forms/formprescription.cpp \
+    Forms/formtreatment.cpp \
     List/List.cpp \
-    Passenger/Passenger.cpp \
     Sales/Sales.cpp \
-    Tree/AVLTree.cpp \
     Models/QTableModel.cpp \
-    Models/avltreemodel.cpp \
-    FormPassanger/formpassanger.cpp \
-    FormSales/formsales.cpp \
-    Models/hashtablemodel.cpp \
+    Forms/formsales.cpp \
     Models/listmodel.cpp \
     Models/Models.cpp \
-    formdoctor.cpp \
-    formprescription.cpp \
-    formtreatment.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Flight/Flight.hpp \
     FormFlight/formflight.h \
-    FormSales/formcomplant.h \
-    FormSales/formpatient.h \
-    HashTable/HashTable.hpp \
+    Forms/formcomplant.h \
+    Forms/formpatient.h \
+    Forms/formdoctor.h \
+    Forms/formprescription.h \
+    Forms/formtreatment.h \
     List/List.hpp \
-    Passenger/Passenger.hpp \
     Sales/Sales.hpp \
-    Tree/AVLTree.hpp \
     Models/QTableModel.h \
-    Models/avltreemodel.h \
-    FormPassanger/formpassanger.h \
-    FormSales/formsales.h \
-    Models/hashtablemodel.h \
+    Forms/formsales.h \
     Models/listmodel.h \
     Models/Models.hpp \
-    formdoctor.h \
-    formprescription.h \
-    formtreatment.h \
     mainwindow.h
 
 FORMS += \
-    FormFlight/formflight.ui \
-    FormPassanger/formpassanger.ui \
-    FormSales/formcomplant.ui \
-    FormSales/formpatient.ui \
-    FormSales/formsales.ui \
-    FormSales/formdoctor.ui \
-    FormSales/formprescription.ui \
-    FormSales/formtreatment.ui \
+    Forms/formcomplant.ui \
+    Forms/formpatient.ui \
+    Forms/formsales.ui \
+    Forms/formdoctor.ui \
+    Forms/formprescription.ui \
+    Forms/formtreatment.ui \
     mainwindow.ui
 
 # Default rules for deployment.
