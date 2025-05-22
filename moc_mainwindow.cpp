@@ -39,11 +39,10 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "MainWindow",
-        "addSale",
+        "addDoctor",
         "",
         "QStringList&",
         "list",
-        "addDoctor",
         "addPatient",
         "addPrescriotion",
         "addTreatment",
@@ -59,46 +58,42 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
     };
 
     QtMocHelpers::UintData qt_methods {
-        // Slot 'addSale'
+        // Slot 'addDoctor'
         QtMocHelpers::SlotData<void(QStringList &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
-        // Slot 'addDoctor'
+        // Slot 'addPatient'
         QtMocHelpers::SlotData<void(QStringList &)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
-        // Slot 'addPatient'
+        // Slot 'addPrescriotion'
         QtMocHelpers::SlotData<void(QStringList &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
-        // Slot 'addPrescriotion'
+        // Slot 'addTreatment'
         QtMocHelpers::SlotData<void(QStringList &)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
-        // Slot 'addTreatment'
+        // Slot 'addComplant'
         QtMocHelpers::SlotData<void(QStringList &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
-        // Slot 'addComplant'
-        QtMocHelpers::SlotData<void(QStringList &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
         // Slot 'on_comboBox_currentIndexChanged'
-        QtMocHelpers::SlotData<void(int)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 11 },
+        QtMocHelpers::SlotData<void(int)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 10 },
         }}),
         // Slot 'on_pushButton_clicked'
-        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_search_clicked'
-        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_ok_clicked'
-        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_lineEdit_search_textEdited'
-        QtMocHelpers::SlotData<void(const QString &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 16 },
+        QtMocHelpers::SlotData<void(const QString &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 15 },
         }}),
         // Slot 'on_pushButton_delete_clicked'
-        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -122,18 +117,17 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     auto *_t = static_cast<MainWindow *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->addSale((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
-        case 1: _t->addDoctor((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
-        case 2: _t->addPatient((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
-        case 3: _t->addPrescriotion((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
-        case 4: _t->addTreatment((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
-        case 5: _t->addComplant((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
-        case 6: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 7: _t->on_pushButton_clicked(); break;
-        case 8: _t->on_pushButton_search_clicked(); break;
-        case 9: _t->on_pushButton_ok_clicked(); break;
-        case 10: _t->on_lineEdit_search_textEdited((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 11: _t->on_pushButton_delete_clicked(); break;
+        case 0: _t->addDoctor((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
+        case 1: _t->addPatient((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
+        case 2: _t->addPrescriotion((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
+        case 3: _t->addTreatment((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
+        case 4: _t->addComplant((*reinterpret_cast< std::add_pointer_t<QStringList&>>(_a[1]))); break;
+        case 5: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 6: _t->on_pushButton_clicked(); break;
+        case 7: _t->on_pushButton_search_clicked(); break;
+        case 8: _t->on_pushButton_ok_clicked(); break;
+        case 9: _t->on_lineEdit_search_textEdited((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->on_pushButton_delete_clicked(); break;
         default: ;
         }
     }
@@ -158,14 +152,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 11;
     }
     return _id;
 }

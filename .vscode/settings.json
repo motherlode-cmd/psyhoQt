@@ -47,5 +47,13 @@
         "list": "cpp",
         "map": "cpp",
         "unordered_map": "cpp"
-    }
+    },
+
+
+  "C_Cpp.default.includePath": [
+    "/opt/homebrew/opt/qt/include",
+    "/opt/homebrew/opt/qt/lib/QtWidgets.framework/Headers"
+  ]
+
+      
 }

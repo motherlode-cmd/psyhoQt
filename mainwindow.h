@@ -1,6 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "Models/listmodel.h"
 #include "Models/Models.hpp"
 #include "QtModels/QtModels.hpp"
 #include <QMainWindow>
@@ -17,7 +16,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
-    void addSale(QStringList & list);
     void addDoctor(QStringList & list);
     void addPatient(QStringList & list);
     void addPrescriotion(QStringList & list);
@@ -41,7 +39,6 @@ private:
     void search_setup(bool setup);
     Ui::MainWindow *ui;
 
-    QTableModel *  salesListModel ;//= new ListModel();
     QTableModel *  DoctorListModel ;//= new QtModel(ui,ElementType::Doctor, std::vector <Doctor*>{});
     QTableModel *  PatientListModel ;//= new QtModel(ui,ElementType::Patient, std::vector <Patient*>{});
     QTableModel *  PrescriotionListModel ;//= new QtModel(ui,ElementType::Prescriotion, std::vector <Prescriotion*>{});

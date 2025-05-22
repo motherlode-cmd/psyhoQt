@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'formsales.ui'
 **
-** Created by: Qt User Interface Compiler version 6.7.2
+** Created by: Qt User Interface Compiler version 6.9.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -56,7 +56,7 @@ public:
         buttonBox = new QDialogButtonBox(FormSales);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(110, 260, 166, 25));
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
 
         retranslateUi(FormSales);
 
