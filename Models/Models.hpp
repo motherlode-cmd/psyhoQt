@@ -10,7 +10,7 @@
 
 class TableElement {
 public:
-    virtual std::vector <std::pair<std::string, std::string>> get_row();
+    virtual std::vector <std::pair<std::string, std::string>> get_row() = 0;
     virtual ~TableElement() = default;
 };
 
