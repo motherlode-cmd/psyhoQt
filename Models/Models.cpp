@@ -1,5 +1,4 @@
-#include "Models.hpp"
-
+#include "Models/Models.hpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -24,6 +23,26 @@ std::string time_t_to_string(std::time_t time, const std::string &format = "%Y-%
     char buffer[80];
     std::strftime(buffer, sizeof(buffer), format.c_str(), &tm);
     return std::string(buffer);
+}
+
+TableElement* createElem(std::vector<std::pair<std::string, std::string>> vector_labels, ElementType type){
+    switch (type)
+    {
+    case ElementType::Doctor:
+        return new Doctor(vector_labels);
+    case ElementType::Patient:
+        return new Patient(vector_labels);
+    case ElementType::Prescriotion:
+        return new Prescriotion(vector_labels);
+    case ElementType::Treatment:
+        return new Treatment(vector_labels);
+    case ElementType::Complant:
+        return new Complant(vector_labels);
+    case ElementType::Unknown:
+        return nullptr;
+    default:
+        return nullptr;
+    }
 }
 
 Doctor::Doctor(std::vector<std::pair<std::string, std::string>> labels_values)
@@ -64,16 +83,6 @@ Doctor::Doctor(std::vector<std::pair<std::string, std::string>> labels_values)
     }
 }
 
-std::vector<std::string> get_Doctor_labels()
-{
-    return std::vector<std::string>{
-        "id",
-        "full_name",
-        "speciality",
-        "phone",
-        "email"};
-}
-
 std::vector<std::pair<std::string, std::string>> Doctor::get_row()
 {
     std::vector<std::pair<std::string, std::string>> labels_values;
@@ -84,6 +93,9 @@ std::vector<std::pair<std::string, std::string>> Doctor::get_row()
     labels_values.push_back(std::pair{"email", email});
     return labels_values;
 }
+
+
+
 
 Patient::Patient(std::vector<std::pair<std::string, std::string>> labels_values)
 {
@@ -126,15 +138,6 @@ Patient::Patient(std::vector<std::pair<std::string, std::string>> labels_values)
     }
 }
 
-std::vector<std::string> get_Patient_labels()
-{
-    return std::vector<std::string>{
-        "id",
-        "full_name",
-        "birth_date",
-        "inpatient"};
-}
-
 std::vector<std::pair<std::string, std::string>> Patient::get_row()
 {
     std::vector<std::pair<std::string, std::string>> labels_values;
@@ -144,6 +147,10 @@ std::vector<std::pair<std::string, std::string>> Patient::get_row()
     labels_values.push_back(std::pair{"inpatient", inpatient == false ? "0" : "1"});
     return labels_values;
 }
+
+
+
+
 Prescriotion::Prescriotion(std::vector<std::pair<std::string, std::string>> labels_values)
 {
     for (const auto &pair : labels_values)
@@ -226,18 +233,6 @@ Prescriotion::Prescriotion(std::vector<std::pair<std::string, std::string>> labe
     }
 }
 
-std::vector<std::string> get_Prescriotion_labels()
-{
-    return std::vector<std::string>{
-        "id",
-        "doctor_id",
-        "medicine",
-        "issue_date",
-        "issue_time",
-        "dossage_mg",
-        "inclassions"};
-}
-
 std::vector<std::pair<std::string, std::string>> Prescriotion::get_row()
 {
     std::vector<std::pair<std::string, std::string>> labels_values;
@@ -250,6 +245,9 @@ std::vector<std::pair<std::string, std::string>> Prescriotion::get_row()
     labels_values.push_back(std::pair{"inclassions", inclassions});
     return labels_values;
 }
+
+
+
 
 Treatment::Treatment(std::vector<std::pair<std::string, std::string>> labels_values)
 {
@@ -333,18 +331,6 @@ Treatment::Treatment(std::vector<std::pair<std::string, std::string>> labels_val
     }
 }
 
-std::vector<std::string> get_Treatment_labels()
-{
-    return std::vector<std::string>{
-        "id",
-        "patient_id",
-        "start_date",
-        "diagnosis",
-        "prescription_id",
-        "end_date",
-        "note"};
-}
-
 std::vector<std::pair<std::string, std::string>> Treatment::get_row()
 {
     std::vector<std::pair<std::string, std::string>> labels_values;
@@ -357,6 +343,10 @@ std::vector<std::pair<std::string, std::string>> Treatment::get_row()
     labels_values.push_back(std::pair{"note", note});
     return labels_values;
 }
+
+
+
+
 Complant::Complant(std::vector<std::pair<std::string, std::string>> labels_values)
 {
     for (const auto &pair : labels_values)
@@ -426,17 +416,6 @@ Complant::Complant(std::vector<std::pair<std::string, std::string>> labels_value
             coplaint_message = pair.second;
         }
     }
-}
-
-std::vector<std::string> get_Complant_labels()
-{
-    return std::vector<std::string>{
-        "id",
-        "doctor_id",
-        "patient_id",
-        "status",
-        "coplaint_date",
-        "coplaint_message"};
 }
 
 std::vector<std::pair<std::string, std::string>> Complant::get_row()

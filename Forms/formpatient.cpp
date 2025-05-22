@@ -12,3 +12,10 @@ FormPatient::~FormPatient()
 {
     delete ui;
 }
+
+void FormPatient::on_buttonBox_accepted()
+{
+    QStringList userData;
+    emit dataEntered(userData);
+    close();
+}

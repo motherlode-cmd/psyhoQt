@@ -14,9 +14,15 @@ class FormTreatment : public QDialog
 public:
     explicit FormTreatment(QWidget *parent = nullptr);
     ~FormTreatment();
+signals:
+    void dataEntered(QStringList &userData);
 
+private slots:
+    void on_buttonBox_accepted();
+    
 private:
     Ui::FormTreatment *ui;
+
 };
 
 #endif // FORMTREATMENT_H

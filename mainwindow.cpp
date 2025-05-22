@@ -3,11 +3,23 @@
 #include "QtModels/QTableModel.h"
 #include <iostream>
 #include "Forms/formsales.h"
+#include "Forms/formdoctor.h"
+#include "Forms/formcomplant.h"
+#include "Forms/formpatient.h"
+#include "Forms/formprescription.h"
+#include "Forms/formtreatment.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    salesListModel = new ListModel();
+    DoctorListModel = new QtModel(this,ElementType::Doctor);
+    PatientListModel = new QtModel(this,ElementType::Patient);
+    PrescriotionListModel = new QtModel(this,ElementType::Prescriotion);
+    TreatmentListModel = new QtModel(this,ElementType::Treatment);
+    ComplantListModel = new QtModel(this,ElementType::Complant);
     ui->comboBox->addItem("Билеты");
     ui->comboBox->addItem("Doctor");
     ui->comboBox->addItem("Patient");
@@ -74,19 +86,19 @@ void MainWindow::on_pushButton_clicked()
         form->show();
     } else     if(ui->comboBox->currentIndex() == 1) {
         FormDoctor * form = new FormDoctor();
-        connect(form, &FoDoctor::dataEntered, this, &MainWindow::addDoctor);
+        connect(form, &FormDoctor::dataEntered, this, &MainWindow::addDoctor);
         form->show();
     } else     if(ui->comboBox->currentIndex() == 2) {
         FormPatient * form = new FormPatient();
-        connect(form, &ForPatient::dataEntered, this, &MainWindow::addPatient);
+        connect(form, &FormPatient::dataEntered, this, &MainWindow::addPatient);
         form->show();
     } else     if(ui->comboBox->currentIndex() == 3) {
-        FormPrescriotion * form = new FormPrescriotion();
-        connect(form, &FormSalePrescriotion::dataEntered, this, &MainWindow::addPrescriotion);
+        FormPrescription * form = new FormPrescription();
+        connect(form, &FormPrescription::dataEntered, this, &MainWindow::addPrescriotion);
         form->show();
     } else     if(ui->comboBox->currentIndex() == 4) {
         FormTreatment * form = new FormTreatment();
-        connect(form, &FormSTreatment::dataEntered, this, &MainWindow::addTreatment);
+        connect(form, &FormTreatment::dataEntered, this, &MainWindow::addTreatment);
         form->show();
     } else     if(ui->comboBox->currentIndex() == 5) {
         FormComplant * form = new FormComplant();

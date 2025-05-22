@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'listmodel.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.2)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -17,8 +17,8 @@
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'listmodel.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.7.2. It"
+#elif Q_MOC_OUTPUT_REVISION != 69
+#error "This file was generated using the moc from 6.9.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -31,51 +31,41 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-
-#ifdef QT_MOC_HAS_STRINGDATA
-struct qt_meta_stringdata_CLASSListModelENDCLASS_t {};
-constexpr auto qt_meta_stringdata_CLASSListModelENDCLASS = QtMocHelpers::stringData(
-    "ListModel"
-);
-#else  // !QT_MOC_HAS_STRINGDATA
-#error "qtmochelpers.h not found or too old."
-#endif // !QT_MOC_HAS_STRINGDATA
+struct qt_meta_tag_ZN9ListModelE_t {};
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_CLASSListModelENDCLASS[] = {
+template <> constexpr inline auto ListModel::qt_create_metaobjectdata<qt_meta_tag_ZN9ListModelE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "ListModel"
+    };
 
- // content:
-      12,       // revision
-       0,       // classname
-       0,    0, // classinfo
-       0,    0, // methods
-       0,    0, // properties
-       0,    0, // enums/sets
-       0,    0, // constructors
-       0,       // flags
-       0,       // signalCount
-
-       0        // eod
-};
-
+    QtMocHelpers::UintData qt_methods {
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<ListModel, qt_meta_tag_ZN9ListModelE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
 Q_CONSTINIT const QMetaObject ListModel::staticMetaObject = { {
     QMetaObject::SuperData::link<QTableModel::staticMetaObject>(),
-    qt_meta_stringdata_CLASSListModelENDCLASS.offsetsAndSizes,
-    qt_meta_data_CLASSListModelENDCLASS,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9ListModelE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9ListModelE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSListModelENDCLASS_t,
-        // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<ListModel, std::true_type>
-    >,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN9ListModelE_t>.metaTypes,
     nullptr
 } };
 
 void ListModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    (void)_o;
-    (void)_id;
+    auto *_t = static_cast<ListModel *>(_o);
+    (void)_t;
     (void)_c;
+    (void)_id;
     (void)_a;
 }
 
@@ -87,7 +77,7 @@ const QMetaObject *ListModel::metaObject() const
 void *ListModel::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CLASSListModelENDCLASS.stringdata0))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9ListModelE_t>.strings))
         return static_cast<void*>(this);
     return QTableModel::qt_metacast(_clname);
 }

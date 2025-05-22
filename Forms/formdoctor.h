@@ -14,7 +14,11 @@ class FormDoctor : public QDialog
 public:
     explicit FormDoctor(QWidget *parent = nullptr);
     ~FormDoctor();
+signals:
+    void dataEntered(QStringList &userData);
 
+private slots:
+    void on_buttonBox_accepted();
 private:
     Ui::FormDoctor *ui;
 };

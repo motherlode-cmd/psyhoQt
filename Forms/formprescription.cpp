@@ -12,3 +12,10 @@ FormPrescription::~FormPrescription()
 {
     delete ui;
 }
+
+void FormPrescription::on_buttonBox_accepted()
+{
+    QStringList userData;
+    emit dataEntered(userData);
+    close();
+}

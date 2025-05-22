@@ -14,7 +14,11 @@ class FormComplant : public QDialog
 public:
     explicit FormComplant(QWidget *parent = nullptr);
     ~FormComplant();
+signals:
+    void dataEntered(QStringList &userData);
 
+private slots:
+    void on_buttonBox_accepted();
 private:
     Ui::FormComplant *ui;
 };

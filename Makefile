@@ -1380,6 +1380,7 @@ moc_QtModels.cpp: QtModels/QtModels.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
 		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
 		Models/Models.hpp \
+		constants/Tables.hpp \
 		moc_predefs.h \
 		/opt/homebrew/share/qt/libexec/moc
 	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include '/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales/moc_predefs.h' -I/opt/homebrew/share/qt/mkspecs/macx-clang -I'/Users/oksanafedorova/Downloads/Telegram Desktop/aviasales' -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/Library/Developer/CommandLineTools/usr/include -F/opt/homebrew/lib QtModels/QtModels.hpp -o moc_QtModels.cpp
@@ -1412,6 +1413,9 @@ moc_mainwindow.cpp: mainwindow.h \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
 		/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
+		Models/Models.hpp \
+		constants/Tables.hpp \
+		QtModels/QtModels.hpp \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		moc_predefs.h \
@@ -1516,11 +1520,12 @@ QTableModel.o: QtModels/QTableModel.cpp QtModels/QTableModel.h \
 		/opt/homebrew/lib/QtGui.framework/Headers/qpixmap.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QTableModel.o QtModels/QTableModel.cpp
 
-QtModels.o: QtModels/QtModels.cpp QtModels/QtModels.hpp \
+QtModels.o: QtModels/QtModels.cpp Models/Models.hpp \
+		constants/Tables.hpp \
+		QtModels/QtModels.hpp \
 		QtModels/QTableModel.h \
 		/opt/homebrew/lib/QtCore.framework/Headers/QAbstractListModel \
-		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		Models/Models.hpp
+		/opt/homebrew/lib/QtCore.framework/Headers/qabstractitemmodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QtModels.o QtModels/QtModels.cpp
 
 formsales.o: Forms/formsales.cpp Forms/formsales.h \
@@ -1543,7 +1548,8 @@ listmodel.o: Models/listmodel.cpp Models/listmodel.h \
 		/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o listmodel.o Models/listmodel.cpp
 
-Models.o: Models/Models.cpp Models/Models.hpp
+Models.o: Models/Models.cpp Models/Models.hpp \
+		constants/Tables.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Models.o Models/Models.cpp
 
 main.o: main.cpp mainwindow.h \
@@ -1555,6 +1561,9 @@ main.o: main.cpp mainwindow.h \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
 		/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
+		Models/Models.hpp \
+		constants/Tables.hpp \
+		QtModels/QtModels.hpp \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QApplication \
@@ -1570,12 +1579,22 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		Sales/Sales.hpp \
 		/opt/homebrew/lib/QtCore.framework/Headers/QStringList \
 		/opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
+		Models/Models.hpp \
+		constants/Tables.hpp \
+		QtModels/QtModels.hpp \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_mainwindow.h \
 		Forms/formsales.h \
 		/opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
-		/opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h
+		/opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
+		Forms/formdoctor.h \
+		/opt/homebrew/lib/QtWidgets.framework/Headers/QDialog \
+		/opt/homebrew/lib/QtWidgets.framework/Headers/qdialog.h \
+		Forms/formcomplant.h \
+		Forms/formpatient.h \
+		Forms/formprescription.h \
+		Forms/formtreatment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 moc_formcomplant.o: moc_formcomplant.cpp 

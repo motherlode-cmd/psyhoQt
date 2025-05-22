@@ -12,3 +12,10 @@ FormComplant::~FormComplant()
 {
     delete ui;
 }
+
+void FormComplant::on_buttonBox_accepted()
+{
+    QStringList userData;
+    emit dataEntered(userData);
+    close();
+}

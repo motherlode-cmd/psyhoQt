@@ -14,7 +14,12 @@ class FormPatient : public QDialog
 public:
     explicit FormPatient(QWidget *parent = nullptr);
     ~FormPatient();
+signals:
+    void dataEntered(QStringList &userData);
 
+private slots:
+    void on_buttonBox_accepted();
+    
 private:
     Ui::FormPatient *ui;
 };

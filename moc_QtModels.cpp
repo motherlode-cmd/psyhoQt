@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'QTableModel.h'
+** Meta object code from reading C++ file 'QtModels.hpp'
 **
 ** Created by: The Qt Meta Object Compiler version 69 (Qt 6.9.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "QtModels/QTableModel.h"
+#include "QtModels/QtModels.hpp"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -16,7 +16,7 @@
 
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'QTableModel.h' doesn't include <QObject>."
+#error "The header file 'QtModels.hpp' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
 #error "This file was generated using the moc from 6.9.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -31,14 +31,14 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_tag_ZN11QTableModelE_t {};
+struct qt_meta_tag_ZN7QtModelE_t {};
 } // unnamed namespace
 
-template <> constexpr inline auto QTableModel::qt_create_metaobjectdata<qt_meta_tag_ZN11QTableModelE_t>()
+template <> constexpr inline auto QtModel::qt_create_metaobjectdata<qt_meta_tag_ZN7QtModelE_t>()
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "QTableModel"
+        "QtModel"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -47,44 +47,44 @@ template <> constexpr inline auto QTableModel::qt_create_metaobjectdata<qt_meta_
     };
     QtMocHelpers::UintData qt_enums {
     };
-    return QtMocHelpers::metaObjectData<QTableModel, qt_meta_tag_ZN11QTableModelE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+    return QtMocHelpers::metaObjectData<QtModel, qt_meta_tag_ZN7QtModelE_t>(QMC::MetaObjectFlag{}, qt_stringData,
             qt_methods, qt_properties, qt_enums);
 }
-Q_CONSTINIT const QMetaObject QTableModel::staticMetaObject = { {
-    QMetaObject::SuperData::link<QAbstractListModel::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QTableModelE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QTableModelE_t>.data,
+Q_CONSTINIT const QMetaObject QtModel::staticMetaObject = { {
+    QMetaObject::SuperData::link<QTableModel::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QtModelE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QtModelE_t>.data,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QTableModelE_t>.metaTypes,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN7QtModelE_t>.metaTypes,
     nullptr
 } };
 
-void QTableModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void QtModel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QTableModel *>(_o);
+    auto *_t = static_cast<QtModel *>(_o);
     (void)_t;
     (void)_c;
     (void)_id;
     (void)_a;
 }
 
-const QMetaObject *QTableModel::metaObject() const
+const QMetaObject *QtModel::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *QTableModel::qt_metacast(const char *_clname)
+void *QtModel::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QTableModelE_t>.strings))
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QtModelE_t>.strings))
         return static_cast<void*>(this);
-    return QAbstractListModel::qt_metacast(_clname);
+    return QTableModel::qt_metacast(_clname);
 }
 
-int QTableModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int QtModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QAbstractListModel::qt_metacall(_c, _id, _a);
+    _id = QTableModel::qt_metacall(_c, _id, _a);
     return _id;
 }
 QT_WARNING_POP

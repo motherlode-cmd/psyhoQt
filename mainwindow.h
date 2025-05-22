@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include "Models/listmodel.h"
 #include "Models/Models.hpp"
-#include "QtModels/QTableModel.h"
+#include "QtModels/QtModels.hpp"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -17,9 +17,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
-    void addPassanger(QStringList & list);
     void addSale(QStringList & list);
-    void addFlight(QStringList & list);
+    void addDoctor(QStringList & list);
+    void addPatient(QStringList & list);
+    void addPrescriotion(QStringList & list);
+    void addTreatment(QStringList & list);
+    void addComplant(QStringList & list);
 
 private slots:
     void on_comboBox_currentIndexChanged(int index);
@@ -38,12 +41,11 @@ private:
     void search_setup(bool setup);
     Ui::MainWindow *ui;
 
-    QTableModel *  salesListModel = new ListModel();
-    QTableModel *  DoctorListModel = new QtModel();
-    QTableModel *  PatientListModel = new QtModel();
-    QTableModel *  PrescriotionListModel = new QtModel();
-    QTableModel *  TreatmentListModel = new QtModel();
-    QTableModel *  ComplantListModel = new QtModel();
-
+    QTableModel *  salesListModel ;//= new ListModel();
+    QTableModel *  DoctorListModel ;//= new QtModel(ui,ElementType::Doctor, std::vector <Doctor*>{});
+    QTableModel *  PatientListModel ;//= new QtModel(ui,ElementType::Patient, std::vector <Patient*>{});
+    QTableModel *  PrescriotionListModel ;//= new QtModel(ui,ElementType::Prescriotion, std::vector <Prescriotion*>{});
+    QTableModel *  TreatmentListModel ;//= new QtModel(ui,ElementType::Treatment, std::vector <Treatment*>{});
+    QTableModel *  ComplantListModel ;//= new QtModel(ui,ElementType::Complant, std::vector <Complant*>{});
 };
 #endif // MAINWINDOW_H

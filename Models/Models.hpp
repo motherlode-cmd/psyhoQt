@@ -6,16 +6,20 @@
 #include <vector>
 #include <ctime>
 #include <iomanip>
+#include "constants/Tables.hpp"
 
 class TableElement {
 public:
     virtual std::vector <std::pair<std::string, std::string>> get_row();
+    virtual ~TableElement() = default;
 };
 
-class Doctor: TableElement
+TableElement* createElem(std::vector<std::pair<std::string, std::string>> vector_labels, ElementType type);
+class Doctor: public TableElement
 {
 public:
 Doctor() = default;
+~Doctor() = default;
 Doctor(std::vector<std::pair<std::string, std::string>> vector_labels);
 std::vector <std::pair<std::string, std::string>> get_row();
 private:
@@ -26,10 +30,11 @@ private:
     std::string email;
 };
 
-class Patient: TableElement
+class Patient: public TableElement
 {
 public:
 Patient() = default;
+~Patient() = default;
 Patient(std::vector<std::pair<std::string, std::string>> vector_labels);
 std::vector <std::pair<std::string, std::string>> get_row();
 private:
@@ -39,10 +44,11 @@ private:
     bool inpatient;
 };
 
-class Prescriotion: TableElement
+class Prescriotion: public TableElement
 {
 public:
 Prescriotion() = default;
+~Prescriotion() = default;
 Prescriotion(std::vector<std::pair<std::string, std::string>> vector_labels);
 std::vector <std::pair<std::string, std::string>> get_row();
 private:
@@ -55,10 +61,11 @@ private:
     std::string inclassions;
 };
 
-class Treatment: TableElement
+class Treatment: public TableElement
 {
 public:
 Treatment() = default;
+~Treatment() = default;
 Treatment(std::vector<std::pair<std::string, std::string>> vector_labels);
 std::vector <std::pair<std::string, std::string>> get_row();
 private:
@@ -71,10 +78,11 @@ private:
     std::string note;
 };
 
-class Complant: TableElement
+class Complant: public TableElement
 {
 public:
 Complant() = default;
+~Complant() = default;
 Complant(std::vector<std::pair<std::string, std::string>> vector_labels);
 std::vector <std::pair<std::string, std::string>> get_row();
 private:

@@ -12,3 +12,10 @@ FormDoctor::~FormDoctor()
 {
     delete ui;
 }
+
+void FormDoctor::on_buttonBox_accepted()
+{
+    QStringList userData;
+    emit dataEntered(userData);
+    close();
+}

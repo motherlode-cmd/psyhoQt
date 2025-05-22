@@ -14,7 +14,11 @@ class FormPrescription : public QDialog
 public:
     explicit FormPrescription(QWidget *parent = nullptr);
     ~FormPrescription();
+signals:
+    void dataEntered(QStringList &userData);
 
+private slots:
+    void on_buttonBox_accepted();
 private:
     Ui::FormPrescription *ui;
 };

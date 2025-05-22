@@ -12,3 +12,10 @@ FormTreatment::~FormTreatment()
 {
     delete ui;
 }
+
+void FormTreatment::on_buttonBox_accepted()
+{
+    QStringList userData;
+    emit dataEntered(userData);
+    close();
+}
