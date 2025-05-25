@@ -20,11 +20,12 @@ public:
     virtual ~Database() = default;
     void insertRow(QStringList & row);
     void deleteRow(const QString id);
-    void searchRows(const QString &searchString);
-    void selectRows();
+    QList<QStringList> searchRows(const QString &searchString, const QString &columnSearch);
+    QList<QStringList> selectRows();
     virtual QStringList getColumnNames() = 0;
     virtual QStringList getColumnTypes() = 0;
     virtual QString getTableName() = 0;
+    virtual QList<QStringList> processSelectQuery(QSqlQuery& query) = 0;
 protected:
 };
 
@@ -37,13 +38,12 @@ public:
     QStringList getColumnNames();
     QString getTableName();
     QStringList getColumnTypes();
-
-private:
-    int id;
-    std::string full_name;
-    std::string speciality;
-    std::string phone;
-    std::string email;
+    QList<QStringList> processSelectQuery(QSqlQuery& query);
+    // int id;
+    // std::string full_name;
+    // std::string speciality;
+    // std::string phone;
+    // std::string email;
 };
 
 class Patient : public Database
@@ -54,12 +54,12 @@ public:
     QStringList getColumnNames();
     QString getTableName();
     QStringList getColumnTypes();
+    QList<QStringList> processSelectQuery(QSqlQuery& query);
 
-private:
-    int id;
-    std::string full_name;
-    std::time_t birth_date;
-    bool inpatient;
+    // int id;
+    // std::string full_name;
+    // std::time_t birth_date;
+    // bool inpatient;
 };
 
 class Prescriotion : public Database
@@ -70,15 +70,15 @@ public:
     QStringList getColumnNames();
     QString getTableName();
     QStringList getColumnTypes();
+    QList<QStringList> processSelectQuery(QSqlQuery& query);
 
-private:
-    int id;
-    int doctor_id;
-    std::string medicine;
-    std::time_t issue_date;
-    std::time_t issue_time;
-    double dossage_mg;
-    std::string inclassions;
+    // int id;
+    // int doctor_id;
+    // std::string medicine;
+    // std::time_t issue_date;
+    // std::time_t issue_time;
+    // double dossage_mg;
+    // std::string inclassions;
 };
 
 class Treatment : public Database
@@ -89,15 +89,15 @@ public:
     QStringList getColumnNames();
     QString getTableName();
     QStringList getColumnTypes();
+    QList<QStringList> processSelectQuery(QSqlQuery& query);
 
-private:
-    int id;
-    int patient_id;
-    std::time_t start_date;
-    std::string diagnosis;
-    int prescription_id;
-    std::time_t end_date;
-    std::string note;
+    // int id;
+    // int patient_id;
+    // std::time_t start_date;
+    // std::string diagnosis;
+    // int prescription_id;
+    // std::time_t end_date;
+    // std::string note;
 };
 
 class Complant : public Database
@@ -108,14 +108,14 @@ public:
     QStringList getColumnNames();
     QString getTableName();
     QStringList getColumnTypes();
+    QList<QStringList> processSelectQuery(QSqlQuery& query);
 
-private:
-    int id;
-    int doctor_id;
-    int patient_id;
-    std::string status;
-    std::time_t coplaint_date;
-    std::string coplaint_message;
+    // int id;
+    // int doctor_id;
+    // int patient_id;
+    // std::string status;
+    // std::time_t coplaint_date;
+    // std::string coplaint_message;
 };
 
 #endif // MODELS_H

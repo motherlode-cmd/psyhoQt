@@ -40,12 +40,14 @@ void Database::insertRow(QStringList &row)
         }
     }
 
-    query.prepare(QString("INSERT INTO employee (%1) "
-                          "VALUES (%2)")
+    query.prepare(QString("INSERT INTO %1 (%2) "
+                          "VALUES (%3)")
+                      .arg(tableNmae)
                       .arg(isertedColumns)
                       .arg(insertedValuesString));
 
-    for (int i = 1; i < row.size(); i++) {
+    for (int i = 1; i < row.size(); i++)
+    {
         query.bindValue(QString(":%1").arg(colunmNames[i]), row.at(i));
     }
 
@@ -54,34 +56,61 @@ void Database::insertRow(QStringList &row)
 
 void Database::deleteRow(const QString id)
 {
-}
-void Database::searchRows(const QString &searchString)
-{
-}
-void Database::selectRows()
-{
-}
+    auto db = QSqlDatabase::database();
+    if (!db.isOpen())
+    {
+        db.open();
+    }
 
-std::time_t string_to_time_t(const std::string &time_str, const std::string &format = "%Y-%m-%d %H:%M:%S")
-{
     QSqlQuery query;
 
-    std::tm tm = {};
-    std::istringstream ss(time_str);
-    ss >> std::get_time(&tm, format.c_str());
-    if (ss.fail())
-    {
-        throw std::runtime_error("Failed to parse time string");
-    }
-    return std::mktime(&tm);
+    auto tableNmae = this->getTableName();
+    query.prepare(QString("DELETE FROM %1"
+                          "WHERE id = %2")
+                      .arg(tableNmae)
+                      .arg(id));
+
+    query.exec();
 }
 
-std::string time_t_to_string(std::time_t time, const std::string &format = "%Y-%m-%d %H:%M:%S")
+QList<QStringList> Database::searchRows(const QString &searchString, const QString &columnSearch)
 {
-    std::tm tm = *std::localtime(&time);
-    char buffer[80];
-    std::strftime(buffer, sizeof(buffer), format.c_str(), &tm);
-    return std::string(buffer);
+    auto db = QSqlDatabase::database();
+    if (!db.isOpen())
+    {
+        db.open();
+    }
+
+    QSqlQuery query;
+
+    auto tableNmae = this->getTableName();
+    query.prepare(QString("SELECT * FROM %1"
+                          "WHERE %2 LIKE '%3'")
+                      .arg(tableNmae)
+                      .arg(columnSearch)
+                      .arg(searchString));
+    query.exec();
+
+    return this->processSelectQuery(query);
+}
+
+QList<QStringList> Database::selectRows()
+{
+    auto db = QSqlDatabase::database();
+    if (!db.isOpen())
+    {
+        db.open();
+    }
+
+    QSqlQuery query;
+
+    auto tableNmae = this->getTableName();
+    query.prepare(QString("SELECT * FROM %1"
+                          "WHERE id = %2")
+                      .arg(tableNmae));
+    query.exec();
+
+    return this->processSelectQuery(query);
 }
 
 Database *createElem(QSqlDatabase *connection, ElementType type)
@@ -103,6 +132,27 @@ Database *createElem(QSqlDatabase *connection, ElementType type)
     default:
         return nullptr;
     }
+}
+
+QList<QStringList> Doctor::processSelectQuery(QSqlQuery &query)
+{
+    QList<QStringList> result = {};
+    while (query.next())
+    {
+        QString id = query.value(0).toString();
+        QString full_name = query.value(1).toString();
+        QString speciality = query.value(2).toString();
+        QString phone = query.value(3).toString();
+        QString email = query.value(4).toString();
+
+        result.append(QStringList{
+            id,
+            full_name,
+            speciality,
+            phone,
+            email});
+    }
+    return result;
 }
 
 QString Doctor::getTableName()
@@ -132,6 +182,25 @@ QStringList Doctor::getColumnNames()
     return labels_values;
 }
 
+QList<QStringList> Patient::processSelectQuery(QSqlQuery &query)
+{
+    QList<QStringList> result = {};
+    while (query.next())
+    {
+        QString id = query.value(0).toString();
+        QString full_name = query.value(1).toString();
+        QString birth_date = query.value(2).toString();
+        QString inpatient = query.value(3).toString();
+
+        result.append(QStringList{
+            id,
+            full_name,
+            birth_date,
+            inpatient});
+    }
+    return result;
+}
+
 QString Patient::getTableName()
 {
     return "table";
@@ -155,6 +224,31 @@ QStringList Patient::getColumnNames()
     labels_values.append("birth_date");
     labels_values.append("inpatient");
     return labels_values;
+}
+
+QList<QStringList> Prescriotion::processSelectQuery(QSqlQuery &query)
+{
+    QList<QStringList> result = {};
+    while (query.next())
+    {
+        QString id = query.value(0).toString();
+        QString doctor_id = query.value(1).toString();
+        QString medicine = query.value(2).toString();
+        QString issue_date = query.value(3).toString();
+        QString issue_time = query.value(4).toString();
+        QString dossage_mg = query.value(5).toString();
+        QString inclassions = query.value(6).toString();
+
+        result.append(QStringList{
+            id,
+            doctor_id,
+            medicine,
+            issue_date,
+            issue_time,
+            dossage_mg,
+            inclassions});
+    }
+    return result;
 }
 
 QString Prescriotion::getTableName()
@@ -188,6 +282,31 @@ QStringList Prescriotion::getColumnNames()
     return labels_values;
 }
 
+QList<QStringList> Treatment::processSelectQuery(QSqlQuery &query)
+{
+    QList<QStringList> result = {};
+    while (query.next())
+    {
+        QString id = query.value(0).toString();
+        QString patient_id = query.value(1).toString();
+        QString start_date = query.value(2).toString();
+        QString diagnosis = query.value(3).toString();
+        QString prescription_id = query.value(4).toString();
+        QString end_date = query.value(5).toString();
+        QString note = query.value(6).toString();
+
+        result.append(QStringList{
+            id,
+            patient_id,
+            start_date,
+            diagnosis,
+            prescription_id,
+            end_date,
+            note});
+    }
+    return result;
+}
+
 QString Treatment::getTableName()
 {
     return "table";
@@ -217,6 +336,29 @@ QStringList Treatment::getColumnNames()
     labels_values.append("end_date");
     labels_values.append("note");
     return labels_values;
+}
+
+QList<QStringList> Complant::processSelectQuery(QSqlQuery &query)
+{
+    QList<QStringList> result = {};
+    while (query.next())
+    {
+        QString id = query.value(0).toString();
+        QString doctor_id = query.value(1).toString();
+        QString patient_id = query.value(2).toString();
+        QString status = query.value(3).toString();
+        QString coplaint_date = query.value(4).toString();
+        QString coplaint_message = query.value(5).toString();
+
+        result.append(QStringList{
+            id,
+            doctor_id,
+            patient_id,
+            status,
+            coplaint_date,
+            coplaint_message});
+    }
+    return result;
 }
 
 QString Complant::getTableName()
