@@ -29,6 +29,13 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->table->setModel(ComplantListModel);
     ui->table->resizeColumnsToContents();
     ui->pushButton_search->setVisible(true);
+
+    QSqlDatabase objDatabase = QSqlDatabase::addDatabase("QMYSQL");
+    objDatabase.setDatabaseName("librarydb");
+    objDatabase.setHostName("127.0.0.1");
+    objDatabase.setPort(3306);
+    objDatabase.setUserName("hays0503");
+    objDatabase.setPassword("hays0503");
 }
 
 MainWindow::~MainWindow()

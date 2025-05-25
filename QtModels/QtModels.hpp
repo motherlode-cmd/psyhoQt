@@ -8,10 +8,10 @@ class QtModel : public QTableModel
     Q_OBJECT
 public:
     QtModel(QObject *parent = nullptr);
-    QtModel(QObject *parent = nullptr, ElementType type = ElementType::Unknown)
+    QtModel(QObject *parent = nullptr, ElementType type = ElementType::Unknown, QSqlDatabase *connection = nullptr)
     {
         this->type = type;
-        this->list = std::vector<TableElement*>{};
+        this->db = createElem(connection, type);
     }
     // Переопределение виртуальных методов базового класса
     void addItem(QStringList &newValue) override;
@@ -21,7 +21,7 @@ public:
     QStringList get_headers() const override;
 
 private:
-    std::vector<TableElement *> list;
+    Database * db;
     ElementType type;
 };
 #endif // QTMODELS_H

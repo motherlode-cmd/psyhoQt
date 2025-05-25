@@ -6,21 +6,15 @@ QtModel::QtModel(QObject *parent) {}
 
 // Переопределение виртуальных методов базового класса
 void QtModel::addItem(QStringList & newValue) {
-    auto labels = tableLabels.at(type);
-    std::vector <std::pair<std::string, std::string>> values;
-    for (int i = 0; i < newValue.size(); i++) {
-        values.push_back({labels[i], newValue[i].toStdString()});
-    }
-    list.push_back(createElem(values, type));
+    db->insertRow(newValue);
 }
 
 void QtModel::removeItem(QModelIndex & index) {
-    delete list[index.row()];
-    list.erase(list.begin() + index.row());
+    db->deleteRow(values.at(index.row()).at(0));
 }
 
 void QtModel::search(const QString &searchString) {
-
+    db->searchRows(searchString);
 }
 
 QList<QStringList> *QtModel::getQList() {

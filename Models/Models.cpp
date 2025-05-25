@@ -5,8 +5,67 @@
 #include <ctime>
 #include <sstream>
 
+void Database::insertRow(QStringList &row)
+{
+    auto db = QSqlDatabase::database();
+    if (!db.isOpen())
+    {
+        db.open();
+    }
+    QSqlQuery query;
+
+    auto colunmNames = this->getColumnNames();
+    auto colunmTypes = this->getColumnTypes();
+    auto tableNmae = this->getTableName();
+
+    QString isertedColumns = "";
+    QString insertedValuesString = "";
+    for (int i = 0; i < colunmNames.size(); i++)
+    {
+        if (colunmNames[i] != "id")
+        {
+            isertedColumns += colunmNames[i];
+            if (colunmTypes.at(i) == "string")
+            {
+                insertedValuesString += QString("':%1'").arg(colunmNames[i]);
+            }
+            else
+            {
+                insertedValuesString += ":" + colunmNames[i];
+            }
+        }
+        if (i < colunmNames.size() - 1)
+        {
+            isertedColumns += ", ";
+        }
+    }
+
+    query.prepare(QString("INSERT INTO employee (%1) "
+                          "VALUES (%2)")
+                      .arg(isertedColumns)
+                      .arg(insertedValuesString));
+
+    for (int i = 1; i < row.size(); i++) {
+        query.bindValue(QString(":%1").arg(colunmNames[i]), row.at(i));
+    }
+
+    query.exec();
+}
+
+void Database::deleteRow(const QString id)
+{
+}
+void Database::searchRows(const QString &searchString)
+{
+}
+void Database::selectRows()
+{
+}
+
 std::time_t string_to_time_t(const std::string &time_str, const std::string &format = "%Y-%m-%d %H:%M:%S")
 {
+    QSqlQuery query;
+
     std::tm tm = {};
     std::istringstream ss(time_str);
     ss >> std::get_time(&tm, format.c_str());
@@ -25,19 +84,20 @@ std::string time_t_to_string(std::time_t time, const std::string &format = "%Y-%
     return std::string(buffer);
 }
 
-TableElement* createElem(std::vector<std::pair<std::string, std::string>> vector_labels, ElementType type){
+Database *createElem(QSqlDatabase *connection, ElementType type)
+{
     switch (type)
     {
     case ElementType::Doctor:
-        return new Doctor(vector_labels);
+        return new Doctor();
     case ElementType::Patient:
-        return new Patient(vector_labels);
+        return new Patient();
     case ElementType::Prescriotion:
-        return new Prescriotion(vector_labels);
+        return new Prescriotion();
     case ElementType::Treatment:
-        return new Treatment(vector_labels);
+        return new Treatment();
     case ElementType::Complant:
-        return new Complant(vector_labels);
+        return new Complant();
     case ElementType::Unknown:
         return nullptr;
     default:
@@ -45,387 +105,145 @@ TableElement* createElem(std::vector<std::pair<std::string, std::string>> vector
     }
 }
 
-Doctor::Doctor(std::vector<std::pair<std::string, std::string>> labels_values)
+QString Doctor::getTableName()
 {
-    for (const auto &pair : labels_values)
-    {
-        if (pair.first == "id")
-        {
-            try
-            {
-                id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "full_name")
-        {
-            full_name = pair.second;
-        }
-        if (pair.first == "speciality")
-        {
-            speciality = pair.second;
-        }
-        if (pair.first == "phone")
-        {
-            phone = pair.second;
-        }
-        if (pair.first == "email")
-        {
-            email = pair.second;
-        }
-    }
+    return "table";
 }
 
-std::vector<std::pair<std::string, std::string>> Doctor::get_row()
+QStringList Doctor::getColumnTypes()
 {
-    std::vector<std::pair<std::string, std::string>> labels_values;
-    labels_values.push_back(std::pair{"id", std::to_string(id)});
-    labels_values.push_back(std::pair{"full_name", full_name});
-    labels_values.push_back(std::pair{"speciality", speciality});
-    labels_values.push_back(std::pair{"phone", phone});
-    labels_values.push_back(std::pair{"email", email});
+    QStringList column_types;
+    column_types.append("int");
+    column_types.append("string");
+    column_types.append("string");
+    column_types.append("string");
+    column_types.append("string");
+    return column_types;
+}
+
+QStringList Doctor::getColumnNames()
+{
+    QStringList labels_values;
+    labels_values.append("id");
+    labels_values.append("full_name");
+    labels_values.append("speciality");
+    labels_values.append("phone");
+    labels_values.append("email");
     return labels_values;
 }
 
-
-
-
-Patient::Patient(std::vector<std::pair<std::string, std::string>> labels_values)
+QString Patient::getTableName()
 {
-    for (const auto &pair : labels_values)
-    {
-        if (pair.first == "id")
-        {
-            try
-            {
-                id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "full_name")
-        {
-            full_name = pair.second;
-        }
-        if (pair.first == "birth_date")
-        {
-            try
-            {
-                birth_date = string_to_time_t(pair.second);
-            }
-            catch (const std::runtime_error &e)
-            {
-                std::cout << "Ошибка: формат даты не верный" << std::endl;
-            }
-        }
-        if (pair.first == "inpatient")
-        {
-            inpatient = pair.second == "0" ? false : true;
-        }
-    }
+    return "table";
 }
 
-std::vector<std::pair<std::string, std::string>> Patient::get_row()
+QStringList Patient::getColumnTypes()
 {
-    std::vector<std::pair<std::string, std::string>> labels_values;
-    labels_values.push_back(std::pair{"id", std::to_string(id)});
-    labels_values.push_back(std::pair{"full_name", full_name});
-    labels_values.push_back(std::pair{"birth_date", time_t_to_string(birth_date)});
-    labels_values.push_back(std::pair{"inpatient", inpatient == false ? "0" : "1"});
+    QStringList column_types;
+    column_types.append("int");
+    column_types.append("string");
+    column_types.append("date");
+    column_types.append("string");
+    return column_types;
+}
+
+QStringList Patient::getColumnNames()
+{
+    QStringList labels_values;
+    labels_values.append("id");
+    labels_values.append("full_name");
+    labels_values.append("birth_date");
+    labels_values.append("inpatient");
     return labels_values;
 }
 
-
-
-
-Prescriotion::Prescriotion(std::vector<std::pair<std::string, std::string>> labels_values)
+QString Prescriotion::getTableName()
 {
-    for (const auto &pair : labels_values)
-    {
-        if (pair.first == "id")
-        {
-            try
-            {
-                id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "doctor_id")
-        {
-            try
-            {
-                doctor_id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "medicine")
-        {
-            medicine = pair.second;
-        }
-        if (pair.first == "issue_date")
-        {
-            try
-            {
-                issue_date = string_to_time_t(pair.second);
-            }
-            catch (const std::runtime_error &e)
-            {
-                std::cout << "Ошибка: формат даты не верный" << std::endl;
-            }
-        }
-        if (pair.first == "issue_time")
-        {
-            try
-            {
-                issue_date = string_to_time_t(pair.second);
-            }
-            catch (const std::runtime_error &e)
-            {
-                std::cout << "Ошибка: формат даты не верный" << std::endl;
-            }
-        }
-        if (pair.first == "dossage_mg")
-        {
-            try
-            {
-                dossage_mg = std::stof(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "inclassions")
-        {
-            inclassions = pair.second;
-        }
-    }
+    return "table";
 }
 
-std::vector<std::pair<std::string, std::string>> Prescriotion::get_row()
+QStringList Prescriotion::getColumnTypes()
 {
-    std::vector<std::pair<std::string, std::string>> labels_values;
-    labels_values.push_back(std::pair{"id", std::to_string(id)});
-    labels_values.push_back(std::pair{"doctor_id", std::to_string(doctor_id)});
-    labels_values.push_back(std::pair{"medicine", medicine});
-    labels_values.push_back(std::pair{"issue_date", time_t_to_string(issue_date)});
-    labels_values.push_back(std::pair{"issue_time", time_t_to_string(issue_time)});
-    labels_values.push_back(std::pair{"dossage_mg", std::to_string(dossage_mg)});
-    labels_values.push_back(std::pair{"inclassions", inclassions});
+    QStringList column_types;
+    column_types.append("int");
+    column_types.append("int");
+    column_types.append("string");
+    column_types.append("date");
+    column_types.append("date");
+    column_types.append("double");
+    column_types.append("string");
+    return column_types;
+}
+
+QStringList Prescriotion::getColumnNames()
+{
+    QStringList labels_values;
+    labels_values.append("id");
+    labels_values.append("doctor_id");
+    labels_values.append("medicine");
+    labels_values.append("issue_date");
+    labels_values.append("issue_time");
+    labels_values.append("dossage_mg");
+    labels_values.append("inclassions");
     return labels_values;
 }
 
-
-
-
-Treatment::Treatment(std::vector<std::pair<std::string, std::string>> labels_values)
+QString Treatment::getTableName()
 {
-    for (const auto &pair : labels_values)
-    {
-        if (pair.first == "id")
-        {
-            try
-            {
-                id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "patient_id")
-        {
-            try
-            {
-                patient_id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "start_date")
-        {
-            try
-            {
-                start_date = string_to_time_t(pair.second);
-            }
-            catch (const std::runtime_error &e)
-            {
-                std::cout << "Ошибка: формат даты не верный" << std::endl;
-            }
-        }
-        if (pair.first == "diagnosis")
-        {
-            diagnosis = pair.second;
-        }
-        if (pair.first == "prescription_id")
-        {
-            try
-            {
-                prescription_id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "end_date")
-        {
-            try
-            {
-                end_date = string_to_time_t(pair.second);
-            }
-            catch (const std::runtime_error &e)
-            {
-                std::cout << "Ошибка: формат даты не верный" << std::endl;
-            }
-        }
-        if (pair.first == "note")
-        {
-            note = pair.second;
-        }
-    }
+    return "table";
 }
 
-std::vector<std::pair<std::string, std::string>> Treatment::get_row()
+QStringList Treatment::getColumnTypes()
 {
-    std::vector<std::pair<std::string, std::string>> labels_values;
-    labels_values.push_back(std::pair{"id", std::to_string(id)});
-    labels_values.push_back(std::pair{"patient_id", std::to_string(patient_id)});
-    labels_values.push_back(std::pair{"start_date", time_t_to_string(start_date)});
-    labels_values.push_back(std::pair{"diagnosis", diagnosis});
-    labels_values.push_back(std::pair{"prescription_id", time_t_to_string(prescription_id)});
-    labels_values.push_back(std::pair{"end_date", std::to_string(end_date)});
-    labels_values.push_back(std::pair{"note", note});
+    QStringList column_types;
+    column_types.append("int");
+    column_types.append("int");
+    column_types.append("date");
+    column_types.append("string");
+    column_types.append("int");
+    column_types.append("date");
+    column_types.append("string");
+    return column_types;
+}
+
+QStringList Treatment::getColumnNames()
+{
+    QStringList labels_values;
+    labels_values.append("id");
+    labels_values.append("patient_id");
+    labels_values.append("start_date");
+    labels_values.append("diagnosis");
+    labels_values.append("prescription_id");
+    labels_values.append("end_date");
+    labels_values.append("note");
     return labels_values;
 }
 
-
-
-
-Complant::Complant(std::vector<std::pair<std::string, std::string>> labels_values)
+QString Complant::getTableName()
 {
-    for (const auto &pair : labels_values)
-    {
-        if (pair.first == "id")
-        {
-            try
-            {
-                id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "doctor_id")
-        {
-            try
-            {
-                doctor_id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "patient_id")
-        {
-            try
-            {
-                patient_id = std::stoi(pair.second);
-            }
-            catch (const std::invalid_argument &e)
-            {
-                std::cout << "Неверный ID: " << e.what() << std::endl;
-            }
-            catch (const std::out_of_range &e)
-            {
-                std::cout << "Ошибка: значение вне диапазона" << std::endl;
-            };
-        }
-        if (pair.first == "status")
-        {
-            status = pair.second;
-        }
-        if (pair.first == "coplaint_date")
-        {
-            try
-            {
-                coplaint_date = string_to_time_t(pair.second);
-            }
-            catch (const std::runtime_error &e)
-            {
-                std::cout << "Ошибка: формат даты не верный" << std::endl;
-            }
-        }
-        if (pair.first == "coplaint_message")
-        {
-            coplaint_message = pair.second;
-        }
-    }
+    return "table";
 }
 
-std::vector<std::pair<std::string, std::string>> Complant::get_row()
+QStringList Complant::getColumnTypes()
 {
-    std::vector<std::pair<std::string, std::string>> labels_values;
-    labels_values.push_back(std::pair{"id", std::to_string(id)});
-    labels_values.push_back(std::pair{"doctor_id", std::to_string(doctor_id)});
-    labels_values.push_back(std::pair{"patient_id", std::to_string(patient_id)});
-    labels_values.push_back(std::pair{"status", status});
-    labels_values.push_back(std::pair{"coplaint_date", time_t_to_string(coplaint_date)});
-    labels_values.push_back(std::pair{"coplaint_message", coplaint_message});
+    QStringList column_types;
+    column_types.append("int");
+    column_types.append("int");
+    column_types.append("int");
+    column_types.append("string");
+    column_types.append("date");
+    column_types.append("string");
+    return column_types;
+}
+
+QStringList Complant::getColumnNames()
+{
+    QStringList labels_values;
+    labels_values.append("id");
+    labels_values.append("doctor_id");
+    labels_values.append("patient_id");
+    labels_values.append("status");
+    labels_values.append("coplaint_date");
+    labels_values.append("coplaint_message");
     return labels_values;
 }

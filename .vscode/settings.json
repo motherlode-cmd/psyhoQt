@@ -46,7 +46,23 @@
         "algorithm": "cpp",
         "list": "cpp",
         "map": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "qsqltablemodel": "cpp",
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "__tree": "cpp",
+        "charconv": "cpp",
+        "condition_variable": "cpp",
+        "deque": "cpp",
+        "iomanip": "cpp",
+        "numbers": "cpp",
+        "optional": "cpp",
+        "queue": "cpp",
+        "semaphore": "cpp",
+        "set": "cpp",
+        "span": "cpp",
+        "stack": "cpp",
+        "unordered_set": "cpp"
     },
 
 

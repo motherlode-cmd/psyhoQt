@@ -7,21 +7,37 @@
 #include <ctime>
 #include <iomanip>
 #include "constants/Tables.hpp"
+#include <QSql>
+#include <QSqlError>
+#include <QSqlDatabase>
+#include <QSqlTableModel>
+#include <QSqlQuery>
+#include <QString>
 
-class TableElement {
-public:
-    virtual std::vector <std::pair<std::string, std::string>> get_row() = 0;
-    virtual ~TableElement() = default;
-};
-
-TableElement* createElem(std::vector<std::pair<std::string, std::string>> vector_labels, ElementType type);
-class Doctor: public TableElement
+class Database
 {
 public:
-Doctor() = default;
-~Doctor() = default;
-Doctor(std::vector<std::pair<std::string, std::string>> vector_labels);
-std::vector <std::pair<std::string, std::string>> get_row();
+    virtual ~Database() = default;
+    void insertRow(QStringList & row);
+    void deleteRow(const QString id);
+    void searchRows(const QString &searchString);
+    void selectRows();
+    virtual QStringList getColumnNames() = 0;
+    virtual QStringList getColumnTypes() = 0;
+    virtual QString getTableName() = 0;
+protected:
+};
+
+Database *createElem(QSqlDatabase * connection, ElementType type);
+class Doctor : public Database
+{
+public:
+    Doctor() = default;
+    ~Doctor() = default;
+    QStringList getColumnNames();
+    QString getTableName();
+    QStringList getColumnTypes();
+
 private:
     int id;
     std::string full_name;
@@ -30,13 +46,15 @@ private:
     std::string email;
 };
 
-class Patient: public TableElement
+class Patient : public Database
 {
 public:
-Patient() = default;
-~Patient() = default;
-Patient(std::vector<std::pair<std::string, std::string>> vector_labels);
-std::vector <std::pair<std::string, std::string>> get_row();
+    Patient() = default;
+    ~Patient() = default;
+    QStringList getColumnNames();
+    QString getTableName();
+    QStringList getColumnTypes();
+
 private:
     int id;
     std::string full_name;
@@ -44,13 +62,15 @@ private:
     bool inpatient;
 };
 
-class Prescriotion: public TableElement
+class Prescriotion : public Database
 {
 public:
-Prescriotion() = default;
-~Prescriotion() = default;
-Prescriotion(std::vector<std::pair<std::string, std::string>> vector_labels);
-std::vector <std::pair<std::string, std::string>> get_row();
+    Prescriotion() = default;
+    ~Prescriotion() = default;
+    QStringList getColumnNames();
+    QString getTableName();
+    QStringList getColumnTypes();
+
 private:
     int id;
     int doctor_id;
@@ -61,13 +81,15 @@ private:
     std::string inclassions;
 };
 
-class Treatment: public TableElement
+class Treatment : public Database
 {
 public:
-Treatment() = default;
-~Treatment() = default;
-Treatment(std::vector<std::pair<std::string, std::string>> vector_labels);
-std::vector <std::pair<std::string, std::string>> get_row();
+    Treatment() = default;
+    ~Treatment() = default;
+    QStringList getColumnNames();
+    QString getTableName();
+    QStringList getColumnTypes();
+
 private:
     int id;
     int patient_id;
@@ -78,13 +100,15 @@ private:
     std::string note;
 };
 
-class Complant: public TableElement
+class Complant : public Database
 {
 public:
-Complant() = default;
-~Complant() = default;
-Complant(std::vector<std::pair<std::string, std::string>> vector_labels);
-std::vector <std::pair<std::string, std::string>> get_row();
+    Complant() = default;
+    ~Complant() = default;
+    QStringList getColumnNames();
+    QString getTableName();
+    QStringList getColumnTypes();
+
 private:
     int id;
     int doctor_id;
@@ -95,4 +119,3 @@ private:
 };
 
 #endif // MODELS_H
-
