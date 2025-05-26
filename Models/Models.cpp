@@ -291,7 +291,7 @@ QStringList Prescriotion::getColumnNames()
     labels_values.append("issue_date");
     labels_values.append("issue_time");
     labels_values.append("dossage_mg");
-    labels_values.append("inclassions");
+    labels_values.append("instructions");
     return labels_values;
 }
 
