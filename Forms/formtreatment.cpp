@@ -16,6 +16,13 @@ FormTreatment::~FormTreatment()
 void FormTreatment::on_buttonBox_accepted()
 {
     QStringList userData;
+
+    userData.append(ui->dateEdit_end_date->text());
+    userData.append(ui->lineEdit_patient_id->text());
+    userData.append(ui->lineEdit_note->text());
+    userData.append(ui->lineEdit_diagnosis->text());
+    userData.append(ui->dateEdit_start_date->text());
+    userData.append(ui->lineEdit_prescription_id->text());
     emit dataEntered(userData);
     close();
 }

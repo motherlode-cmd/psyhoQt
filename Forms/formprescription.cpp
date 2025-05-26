@@ -16,6 +16,13 @@ FormPrescription::~FormPrescription()
 void FormPrescription::on_buttonBox_accepted()
 {
     QStringList userData;
+
+    userData.append(ui->lineEdit_doctor_id->text());
+    userData.append(ui->lineEdit_inclassions->text());
+    userData.append(ui->lineEdit_medicine->text());
+    userData.append(ui->dateEdit_issue_date->text());
+    userData.append(ui->timeEdit_issue_time->text());
+    userData.append(ui->doubleSpinBox_->text());
     emit dataEntered(userData);
     close();
 }

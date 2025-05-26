@@ -16,6 +16,9 @@ FormPatient::~FormPatient()
 void FormPatient::on_buttonBox_accepted()
 {
     QStringList userData;
+    userData.append(ui->lineEdit_full_name->text());
+    userData.append(ui->checkBox_is_patient->text());
+    userData.append(ui->dateEdit_birth_date->text());
     emit dataEntered(userData);
     close();
 }
