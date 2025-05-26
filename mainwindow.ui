@@ -60,68 +60,6 @@
      <string>Удалить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_search">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>60</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Поиск</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_search">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>60</y>
-      <width>113</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_ok">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>60</y>
-      <width>31</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ok</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>0</y>
-      <width>381</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RadioButton</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_2">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>30</y>
-      <width>381</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RadioButton</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

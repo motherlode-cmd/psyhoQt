@@ -4921,13 +4921,6 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		/opt/homebrew/include/QtWidgets/qabstractitemview.h \
 		/opt/homebrew/include/QtWidgets/qabstractscrollarea.h \
 		/opt/homebrew/include/QtCore/qitemselectionmodel.h \
-		/opt/homebrew/include/QtWidgets/QLineEdit \
-		/opt/homebrew/include/QtWidgets/qlineedit.h \
-		/opt/homebrew/include/QtGui/qtextcursor.h \
-		/opt/homebrew/include/QtGui/qtextdocument.h \
-		/opt/homebrew/include/QtGui/qtextformat.h \
-		/opt/homebrew/include/QtGui/qpen.h \
-		/opt/homebrew/include/QtGui/qtextoption.h \
 		/opt/homebrew/include/QtWidgets/QMainWindow \
 		/opt/homebrew/include/QtWidgets/qmainwindow.h \
 		/opt/homebrew/include/QtWidgets/QMenuBar \
@@ -4936,8 +4929,6 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		/opt/homebrew/include/QtWidgets/QPushButton \
 		/opt/homebrew/include/QtWidgets/qpushbutton.h \
 		/opt/homebrew/include/QtWidgets/qabstractbutton.h \
-		/opt/homebrew/include/QtWidgets/QRadioButton \
-		/opt/homebrew/include/QtWidgets/qradiobutton.h \
 		/opt/homebrew/include/QtWidgets/QStatusBar \
 		/opt/homebrew/include/QtWidgets/qstatusbar.h \
 		/opt/homebrew/include/QtWidgets/QTableView \

@@ -42,7 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->ui->table->setModel(ComplantListModel);
     ui->table->resizeColumnsToContents();
-    ui->pushButton_search->setVisible(false);
 }
 
 MainWindow::~MainWindow()
