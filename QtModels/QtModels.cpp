@@ -7,18 +7,25 @@ QtModel::QtModel(QObject *parent) {}
 // Переопределение виртуальных методов базового класса
 void QtModel::addItem(QStringList & newValue) {
     db->insertRow(newValue);
+    auto list = db->selectRows();
+    populate(&list);
 }
 
 void QtModel::removeItem(QModelIndex & index) {
     db->deleteRow(values.at(index.row()).at(0));
+    auto list = db->selectRows();
+    populate(&list);
 }
 
 void QtModel::search(const QString &searchString) {
     db->searchRows(searchString, "");
+    auto list = db->selectRows();
+    populate(&list);
 }
 
 QList<QStringList> *QtModel::getQList() {
     auto list = db->selectRows();
+    values = list;
     return &list;
 }
 

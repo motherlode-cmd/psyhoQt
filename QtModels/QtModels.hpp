@@ -12,6 +12,7 @@ public:
     {
         this->type = type;
         this->db = createElem(connection, type);
+        values = db->selectRows();
     }
     // Переопределение виртуальных методов базового класса
     void addItem(QStringList &newValue) override;

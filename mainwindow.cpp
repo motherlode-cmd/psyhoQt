@@ -15,6 +15,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // this->log_in_postgres();
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("./psyho.db");
+
+    if (db.open())
+    {
+        qDebug("opened");
+    }
+    else
+    {
+        qDebug("not opened");
+    }
+
     DoctorListModel = new QtModel(this, ElementType::Doctor);
     PatientListModel = new QtModel(this, ElementType::Patient);
     PrescriotionListModel = new QtModel(this, ElementType::Prescriotion);
@@ -27,16 +40,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->comboBox->addItem("Prescriotion");
     ui->comboBox->addItem("Treatment");
 
-    search_setup(false);
     this->ui->table->setModel(ComplantListModel);
     ui->table->resizeColumnsToContents();
-    ui->pushButton_search->setVisible(true);
-
-    this->log_in_postgres();
+    ui->pushButton_search->setVisible(false);
 }
 
 MainWindow::~MainWindow()
 {
+    db.close();
     delete ui;
 }
 
@@ -202,7 +213,7 @@ void MainWindow::on_pushButton_delete_clicked()
     }
 }
 
-void  MainWindow::log_in_postgres()
+void MainWindow::log_in_postgres()
 {
     try
     {
@@ -215,17 +226,16 @@ void  MainWindow::log_in_postgres()
         QString host_name = QString::fromStdString(config["host_name"].as<std::string>());
         int port_num = config["port_num"].as<int>();
 
-        db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(database_name);
-        if (db.open()) {
-            qDebug("opened");
-        } else {
-           qDebug("not opened"); 
-        }
-        db.setHostName(host_name);
-        db.setPort(port_num);
-        db.setUserName(username);
-        db.setPassword(password);
+        // db.setDatabaseName(database_name);
+        // if (db.open()) {
+        //     qDebug("opened");
+        // } else {
+        //    qDebug("not opened");
+        // }
+        // db.setHostName(host_name);
+        // db.setPort(port_num);
+        // db.setUserName(username);
+        // db.setPassword(password);
     }
     catch (const YAML::Exception &e)
     {

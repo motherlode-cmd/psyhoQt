@@ -11,6 +11,7 @@ void Database::insertRow(QStringList &row)
     if (!db.isOpen())
     {
         db.open();
+        std::cout << "Noe opened" << std::endl;
     }
     QSqlQuery query;
 
@@ -51,7 +52,11 @@ void Database::insertRow(QStringList &row)
         query.bindValue(QString(":%1").arg(colunmNames[i]), row.at(i));
     }
 
-    query.exec();
+    bool isOk = query.exec();
+    if (!isOk)
+    {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
 }
 
 void Database::deleteRow(const QString id)
@@ -70,7 +75,11 @@ void Database::deleteRow(const QString id)
                       .arg(tableNmae)
                       .arg(id));
 
-    query.exec();
+    bool isOk = query.exec();
+    if (!isOk)
+    {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
 }
 
 QList<QStringList> Database::searchRows(const QString &searchString, const QString &columnSearch)
@@ -89,7 +98,11 @@ QList<QStringList> Database::searchRows(const QString &searchString, const QStri
                       .arg(tableNmae)
                       .arg(columnSearch)
                       .arg(searchString));
-    query.exec();
+    bool isOk = query.exec();
+    if (!isOk)
+    {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
 
     return this->processSelectQuery(query);
 }
@@ -105,10 +118,15 @@ QList<QStringList> Database::selectRows()
     QSqlQuery query;
 
     auto tableNmae = this->getTableName();
-    query.prepare(QString("SELECT * FROM %1"
-                          "WHERE id = %2")
+    qDebug() << "SELECT in " << tableNmae;
+
+    query.prepare(QString("SELECT * FROM %1")
                       .arg(tableNmae));
-    query.exec();
+    bool isOk = query.exec();
+    if (!isOk)
+    {
+        qDebug() << "SQL Error:" << query.lastError().text();
+    }
 
     return this->processSelectQuery(query);
 }
@@ -157,7 +175,7 @@ QList<QStringList> Doctor::processSelectQuery(QSqlQuery &query)
 
 QString Doctor::getTableName()
 {
-    return "table";
+    return "doctors";
 }
 
 QStringList Doctor::getColumnTypes()
@@ -174,7 +192,7 @@ QStringList Doctor::getColumnTypes()
 QStringList Doctor::getColumnNames()
 {
     QStringList labels_values;
-    labels_values.append("id");
+    labels_values.append("doctor_id");
     labels_values.append("full_name");
     labels_values.append("speciality");
     labels_values.append("phone");
@@ -203,7 +221,7 @@ QList<QStringList> Patient::processSelectQuery(QSqlQuery &query)
 
 QString Patient::getTableName()
 {
-    return "table";
+    return "patients";
 }
 
 QStringList Patient::getColumnTypes()
@@ -219,7 +237,7 @@ QStringList Patient::getColumnTypes()
 QStringList Patient::getColumnNames()
 {
     QStringList labels_values;
-    labels_values.append("id");
+    labels_values.append("patient_id");
     labels_values.append("full_name");
     labels_values.append("birth_date");
     labels_values.append("inpatient");
@@ -253,7 +271,7 @@ QList<QStringList> Prescriotion::processSelectQuery(QSqlQuery &query)
 
 QString Prescriotion::getTableName()
 {
-    return "table";
+    return "prescriptions";
 }
 
 QStringList Prescriotion::getColumnTypes()
@@ -272,7 +290,7 @@ QStringList Prescriotion::getColumnTypes()
 QStringList Prescriotion::getColumnNames()
 {
     QStringList labels_values;
-    labels_values.append("id");
+    labels_values.append("prescription_id");
     labels_values.append("doctor_id");
     labels_values.append("medicine");
     labels_values.append("issue_date");
@@ -309,7 +327,7 @@ QList<QStringList> Treatment::processSelectQuery(QSqlQuery &query)
 
 QString Treatment::getTableName()
 {
-    return "table";
+    return "treatments";
 }
 
 QStringList Treatment::getColumnTypes()
@@ -328,7 +346,7 @@ QStringList Treatment::getColumnTypes()
 QStringList Treatment::getColumnNames()
 {
     QStringList labels_values;
-    labels_values.append("id");
+    labels_values.append("treatment_id");
     labels_values.append("patient_id");
     labels_values.append("start_date");
     labels_values.append("diagnosis");
@@ -343,6 +361,10 @@ QList<QStringList> Complant::processSelectQuery(QSqlQuery &query)
     QList<QStringList> result = {};
     while (query.next())
     {
+        
+        qDebug() << "SQL NextRow:" << query.value(0);
+        
+
         QString id = query.value(0).toString();
         QString doctor_id = query.value(1).toString();
         QString patient_id = query.value(2).toString();
@@ -363,7 +385,7 @@ QList<QStringList> Complant::processSelectQuery(QSqlQuery &query)
 
 QString Complant::getTableName()
 {
-    return "table";
+    return "complaints";
 }
 
 QStringList Complant::getColumnTypes()
@@ -381,7 +403,7 @@ QStringList Complant::getColumnTypes()
 QStringList Complant::getColumnNames()
 {
     QStringList labels_values;
-    labels_values.append("id");
+    labels_values.append("complaint_id");
     labels_values.append("doctor_id");
     labels_values.append("patient_id");
     labels_values.append("status");
