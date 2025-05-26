@@ -27,12 +27,6 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_pushButton_search_clicked();
-
-    void on_pushButton_ok_clicked();
-
-    void on_lineEdit_search_textEdited(const QString &arg1);
-
     void on_pushButton_delete_clicked();
 
     void log_in_postgres();

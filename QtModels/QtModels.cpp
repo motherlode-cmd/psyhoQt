@@ -13,6 +13,7 @@ void QtModel::addItem(QStringList & newValue) {
 
 void QtModel::removeItem(QModelIndex & index) {
     db->deleteRow(values.at(index.row()).at(0));
+    qDebug("Delete row id ",values.at(index.row()).at(0).toInt());
     auto list = db->selectRows();
     populate(&list);
 }

@@ -70,9 +70,12 @@ void Database::deleteRow(const QString id)
     QSqlQuery query;
 
     auto tableNmae = this->getTableName();
+    auto colunmNames = this->getColumnNames();
+
     query.prepare(QString("DELETE FROM %1"
-                          "WHERE id = %2")
+                          "WHERE %2 = %3")
                       .arg(tableNmae)
+                      .arg(colunmNames[0])
                       .arg(id));
 
     bool isOk = query.exec();
@@ -194,7 +197,7 @@ QStringList Doctor::getColumnNames()
     QStringList labels_values;
     labels_values.append("doctor_id");
     labels_values.append("full_name");
-    labels_values.append("speciality");
+    labels_values.append("specialty");
     labels_values.append("phone");
     labels_values.append("email");
     return labels_values;

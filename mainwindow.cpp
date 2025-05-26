@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->ui->table->setModel(ComplantListModel);
     ui->table->resizeColumnsToContents();
+    ui->pushButton_delete->setEnabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -133,60 +134,13 @@ void MainWindow::on_pushButton_clicked()
     }
 }
 
-void MainWindow::on_pushButton_search_clicked()
-{
-    // search_setup(true);
-    // if(ui->comboBox->currentIndex() == 0) {
-    //     ui->radioButton->setText("Поиск пассажира по ФИО");
-    //     ui->radioButton_2->setText("Поиск пассажира по пасспорту");
-    // } else if(ui->comboBox->currentIndex() == 1) {
-    //     ui->radioButton->setText("Поиск авиарейса по номеру");
-    //     ui->radioButton_2->setText("Поиск авиарейса по названию аэропорта");
-    // }
-}
-
-void MainWindow::search_setup(bool setup)
-{
-    // serup == true -> поиск идет
-    //  ui->pushButton_search->setEnabled(!setup);
-    //  ui->pushButton_delete->setEnabled(!setup);
-    //  ui->pushButton->setEnabled(!setup);
-    //  ui->pushButton_ok->setEnabled(setup);
-    //  ui->pushButton_ok->setVisible(setup);
-    //  ui->lineEdit_search->setVisible(setup);
-    //  ui->lineEdit_search->setEnabled(setup);
-    //  ui->radioButton->setVisible(setup);
-    //  ui->radioButton_2->setVisible(setup);
-    //  ui->radioButton->setEnabled(setup);
-    //  ui->radioButton_2->setEnabled(setup);
-    //  ui->comboBox->setEnabled(!setup);
-}
-
-void MainWindow::on_pushButton_ok_clicked()
-{
-    search_setup(false);
-}
-
-void MainWindow::on_lineEdit_search_textEdited(const QString &arg1)
-{
-    // if(ui->comboBox->currentIndex() == 0) {
-    //     if(ui->radioButton_2->isChecked())
-    //         passangerHashTableModel->search(arg1);
-    //     else if(ui->radioButton->isChecked())
-    //         passangerHashTableModel->alt_search(arg1);
-    // } else if(ui->comboBox->currentIndex() == 1) {
-    //     if(ui->radioButton->isChecked())
-    //         flightAVLTreeModel->search(arg1);
-    //     if(ui->radioButton_2->isChecked())
-    //         flightAVLTreeModel->alt_search(arg1);
-    // }
-}
-
 void MainWindow::on_pushButton_delete_clicked()
 {
     QModelIndexList indexes = ui->table->selectionModel()->selectedRows();
+    qDebug("click delete");
     if (!indexes.isEmpty())
     {
+        qDebug("click delete succsessfully");
         QModelIndex index = indexes.first();
 
         if (ui->comboBox->currentIndex() == 0)
