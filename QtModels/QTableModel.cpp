@@ -2,7 +2,7 @@
 
 #include <QModelIndex>
 #include <QDebug>
-#include <QPixmap>
+//#include <QPixmap>
 #include <iostream>
 
 

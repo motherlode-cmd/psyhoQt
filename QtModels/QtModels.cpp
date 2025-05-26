@@ -14,19 +14,12 @@ void QtModel::removeItem(QModelIndex & index) {
 }
 
 void QtModel::search(const QString &searchString) {
-    db->searchRows(searchString);
+    db->searchRows(searchString, "");
 }
 
 QList<QStringList> *QtModel::getQList() {
-    QList<QStringList> * data = new QList<QStringList>;
-    for(auto row : list) {
-        QStringList new_list;
-        for (auto pair : row->get_row()) {
-             new_list.append(QString::fromStdString(pair.second));
-        }
-        data->append(new_list);
-    }
-    return data;
+    auto list = db->selectRows();
+    return &list;
 }
 
 QStringList QtModel::get_headers() const

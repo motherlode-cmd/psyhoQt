@@ -2,11 +2,13 @@
 #include "ui_mainwindow.h"
 #include "QtModels/QTableModel.h"
 #include <iostream>
+#include <QDebug>
 #include "Forms/formdoctor.h"
 #include "Forms/formcomplant.h"
 #include "Forms/formpatient.h"
 #include "Forms/formprescription.h"
 #include "Forms/formtreatment.h"
+#include <yaml-cpp/yaml.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -30,12 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->table->resizeColumnsToContents();
     ui->pushButton_search->setVisible(true);
 
-    QSqlDatabase objDatabase = QSqlDatabase::addDatabase("QMYSQL");
-    objDatabase.setDatabaseName("librarydb");
-    objDatabase.setHostName("127.0.0.1");
-    objDatabase.setPort(3306);
-    objDatabase.setUserName("hays0503");
-    objDatabase.setPassword("hays0503");
+    this->log_in_postgres();
 }
 
 MainWindow::~MainWindow()
@@ -124,7 +121,6 @@ void MainWindow::on_pushButton_clicked()
         connect(form, &FormTreatment::dataEntered, this, &MainWindow::addTreatment);
         form->show();
     }
-
 }
 
 void MainWindow::on_pushButton_search_clicked()
@@ -203,5 +199,36 @@ void MainWindow::on_pushButton_delete_clicked()
         {
             TreatmentListModel->removeItem(index);
         }
+    }
+}
+
+void  MainWindow::log_in_postgres()
+{
+    try
+    {
+        YAML::Node config = YAML::LoadFile("postgres_log.yaml");
+
+        // Пример доступа к данным
+        QString username = QString::fromStdString(config["username"].as<std::string>());
+        QString password = QString::fromStdString(config["password"].as<std::string>());
+        QString database_name = QString::fromStdString(config["database_name"].as<std::string>());
+        QString host_name = QString::fromStdString(config["host_name"].as<std::string>());
+        int port_num = config["port_num"].as<int>();
+
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(database_name);
+        if (db.open()) {
+            qDebug("opened");
+        } else {
+           qDebug("not opened"); 
+        }
+        db.setHostName(host_name);
+        db.setPort(port_num);
+        db.setUserName(username);
+        db.setPassword(password);
+    }
+    catch (const YAML::Exception &e)
+    {
+        std::cerr << "Ошибка чтения YAML: " << e.what() << std::endl;
     }
 }

@@ -35,9 +35,12 @@ private slots:
 
     void on_pushButton_delete_clicked();
 
+    void log_in_postgres();
+
 private:
     void search_setup(bool setup);
     Ui::MainWindow *ui;
+    QSqlDatabase db;
 
     QTableModel *  DoctorListModel ;//= new QtModel(ui,ElementType::Doctor, std::vector <Doctor*>{});
     QTableModel *  PatientListModel ;//= new QtModel(ui,ElementType::Patient, std::vector <Patient*>{});
