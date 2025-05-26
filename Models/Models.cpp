@@ -21,23 +21,16 @@ void Database::insertRow(QStringList &row)
 
     QString isertedColumns = "";
     QString insertedValuesString = "";
-    for (int i = 0; i < colunmNames.size(); i++)
+    for (int i = 1; i < colunmNames.size(); i++)
     {
-        if (colunmNames[i] != "id")
-        {
-            isertedColumns += colunmNames[i];
-            if (colunmTypes.at(i) == "string")
-            {
-                insertedValuesString += QString("':%1'").arg(colunmNames[i]);
-            }
-            else
-            {
-                insertedValuesString += ":" + colunmNames[i];
-            }
-        }
+
+        isertedColumns += colunmNames[i];
+        insertedValuesString += ":" + colunmNames[i]; 
+
         if (i < colunmNames.size() - 1)
         {
             isertedColumns += ", ";
+            insertedValuesString += ", ";
         }
     }
 
@@ -47,9 +40,9 @@ void Database::insertRow(QStringList &row)
                       .arg(isertedColumns)
                       .arg(insertedValuesString));
 
-    for (int i = 1; i < row.size(); i++)
+    for (int i = 0; i < row.size(); i++)
     {
-        query.bindValue(QString(":%1").arg(colunmNames[i]), row.at(i));
+        query.bindValue(QString(":%1").arg(colunmNames[i+1]), row.at(i));
     }
 
     bool isOk = query.exec();
@@ -72,12 +65,11 @@ void Database::deleteRow(const QString id)
     auto tableNmae = this->getTableName();
     auto colunmNames = this->getColumnNames();
 
-    query.prepare(QString("DELETE FROM %1"
-                          "WHERE %2 = %3")
+    query.prepare(QString("DELETE FROM %1 "
+                          "WHERE %2 = :id")
                       .arg(tableNmae)
-                      .arg(colunmNames[0])
-                      .arg(id));
-
+                      .arg(colunmNames[0]));
+    query.bindValue(":id", id);
     bool isOk = query.exec();
     if (!isOk)
     {
@@ -364,9 +356,8 @@ QList<QStringList> Complant::processSelectQuery(QSqlQuery &query)
     QList<QStringList> result = {};
     while (query.next())
     {
-        
+
         qDebug() << "SQL NextRow:" << query.value(0);
-        
 
         QString id = query.value(0).toString();
         QString doctor_id = query.value(1).toString();
@@ -410,7 +401,7 @@ QStringList Complant::getColumnNames()
     labels_values.append("doctor_id");
     labels_values.append("patient_id");
     labels_values.append("status");
-    labels_values.append("coplaint_date");
-    labels_values.append("coplaint_message");
+    labels_values.append("complaint_date");
+    labels_values.append("complaint_message");
     return labels_values;
 }

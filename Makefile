@@ -3556,7 +3556,12 @@ formdoctor.o: Forms/formdoctor.cpp Forms/formdoctor.h \
 		/opt/homebrew/include/QtGui/qtextcursor.h \
 		/opt/homebrew/include/QtGui/qtextformat.h \
 		/opt/homebrew/include/QtGui/qpen.h \
-		/opt/homebrew/include/QtGui/qtextoption.h
+		/opt/homebrew/include/QtGui/qtextoption.h \
+		/opt/homebrew/lib/QtCore.framework/Headers/QRegularExpression \
+		/opt/homebrew/lib/QtCore.framework/Headers/qregularexpression.h \
+		/opt/homebrew/lib/QtGui.framework/Headers/QValidator \
+		/opt/homebrew/lib/QtGui.framework/Headers/qvalidator.h \
+		/opt/homebrew/include/QtCore/qregularexpression.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formdoctor.o Forms/formdoctor.cpp
 
 formprescription.o: Forms/formprescription.cpp Forms/formprescription.h \

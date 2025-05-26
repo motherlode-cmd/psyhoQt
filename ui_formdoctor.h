@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QLabel>
@@ -28,9 +29,9 @@ public:
     QLineEdit *lineEdit_email;
     QLabel *label_4;
     QLabel *label;
-    QLineEdit *lineEdit_speciality;
     QLineEdit *lineEdit_phone;
     QDialogButtonBox *buttonBox;
+    QComboBox *comboBox_peciality;
 
     void setupUi(QDialog *FormDoctor)
     {
@@ -55,9 +56,6 @@ public:
         label = new QLabel(FormDoctor);
         label->setObjectName("label");
         label->setGeometry(QRect(40, 60, 151, 17));
-        lineEdit_speciality = new QLineEdit(FormDoctor);
-        lineEdit_speciality->setObjectName("lineEdit_speciality");
-        lineEdit_speciality->setGeometry(QRect(200, 100, 161, 25));
         lineEdit_phone = new QLineEdit(FormDoctor);
         lineEdit_phone->setObjectName("lineEdit_phone");
         lineEdit_phone->setGeometry(QRect(200, 140, 161, 25));
@@ -66,6 +64,13 @@ public:
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
         buttonBox->setOrientation(Qt::Orientation::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
+        comboBox_peciality = new QComboBox(FormDoctor);
+        comboBox_peciality->addItem(QString());
+        comboBox_peciality->addItem(QString());
+        comboBox_peciality->addItem(QString());
+        comboBox_peciality->addItem(QString());
+        comboBox_peciality->setObjectName("comboBox_peciality");
+        comboBox_peciality->setGeometry(QRect(200, 90, 161, 32));
 
         retranslateUi(FormDoctor);
 
@@ -79,6 +84,11 @@ public:
         label_2->setText(QCoreApplication::translate("FormDoctor", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \321\201\320\277\320\265\321\206\320\270\320\260\320\273\321\214\320\275\320\276\321\201\321\202\321\214", nullptr));
         label_4->setText(QCoreApplication::translate("FormDoctor", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\277\320\276\321\207\321\202\320\276\320\262\321\213\320\271 \320\260\320\264\321\200\320\265\321\201 ", nullptr));
         label->setText(QCoreApplication::translate("FormDoctor", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \320\244\320\230\320\236", nullptr));
+        comboBox_peciality->setItemText(0, QCoreApplication::translate("FormDoctor", "\320\237\321\201\320\270\321\205\320\270\320\260\321\202\321\200", nullptr));
+        comboBox_peciality->setItemText(1, QCoreApplication::translate("FormDoctor", "\320\235\320\265\320\262\321\200\320\276\320\273\320\276\320\263", nullptr));
+        comboBox_peciality->setItemText(2, QCoreApplication::translate("FormDoctor", "\320\224\320\265\321\202\321\201\320\272\320\270\320\271 \320\262\321\200\320\260\321\207", nullptr));
+        comboBox_peciality->setItemText(3, QCoreApplication::translate("FormDoctor", "\320\235\320\260\321\200\320\272\320\276\320\273\320\276\320\263", nullptr));
+
     } // retranslateUi
 
 };

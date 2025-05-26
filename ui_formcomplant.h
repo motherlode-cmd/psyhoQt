@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
@@ -30,10 +31,10 @@ public:
     QLabel *label_4;
     QLabel *label_2;
     QLineEdit *lineEdit_doctor_id;
-    QLineEdit *lineEdit_status;
     QLabel *label_3;
     QLineEdit *lineEdit_complaint_message;
     QLabel *label_5;
+    QComboBox *comboBox_status;
 
     void setupUi(QDialog *FormComplant)
     {
@@ -63,9 +64,6 @@ public:
         lineEdit_doctor_id = new QLineEdit(FormComplant);
         lineEdit_doctor_id->setObjectName("lineEdit_doctor_id");
         lineEdit_doctor_id->setGeometry(QRect(200, 60, 161, 25));
-        lineEdit_status = new QLineEdit(FormComplant);
-        lineEdit_status->setObjectName("lineEdit_status");
-        lineEdit_status->setGeometry(QRect(200, 130, 161, 25));
         label_3 = new QLabel(FormComplant);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(40, 130, 161, 17));
@@ -75,6 +73,12 @@ public:
         label_5 = new QLabel(FormComplant);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(30, 100, 161, 17));
+        comboBox_status = new QComboBox(FormComplant);
+        comboBox_status->addItem(QString());
+        comboBox_status->addItem(QString());
+        comboBox_status->addItem(QString());
+        comboBox_status->setObjectName("comboBox_status");
+        comboBox_status->setGeometry(QRect(200, 130, 161, 32));
 
         retranslateUi(FormComplant);
         QObject::connect(buttonBox, &QDialogButtonBox::accepted, FormComplant, qOverload<>(&QDialog::accept));
@@ -91,6 +95,10 @@ public:
         label_2->setText(QCoreApplication::translate("FormComplant", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 ID \320\264\320\276\320\272\321\202\320\276\321\200\320\260", nullptr));
         label_3->setText(QCoreApplication::translate("FormComplant", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \321\201\321\202\320\260\321\202\321\203\321\201 ", nullptr));
         label_5->setText(QCoreApplication::translate("FormComplant", "\320\222\320\262\320\265\320\264\320\270\321\202\320\265 \321\201\320\276\320\276\320\261\321\211\320\265\320\275\320\270\320\265 ", nullptr));
+        comboBox_status->setItemText(0, QCoreApplication::translate("FormComplant", "\320\235\320\260 \321\200\320\260\321\201\321\201\320\274\320\276\321\202\321\200\320\265\320\275\320\270\320\270", nullptr));
+        comboBox_status->setItemText(1, QCoreApplication::translate("FormComplant", "\320\237\321\200\320\270\320\275\321\217\321\202\320\260", nullptr));
+        comboBox_status->setItemText(2, QCoreApplication::translate("FormComplant", "\320\236\321\202\320\272\320\273\320\276\320\275\320\265\320\275\320\260", nullptr));
+
     } // retranslateUi
 
 };
